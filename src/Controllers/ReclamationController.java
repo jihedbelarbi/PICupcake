@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+//import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -113,14 +113,14 @@ public class ReclamationController implements Initializable {
 //                alert.show();
                 Notifications.create().title("Erreur").text("champ de reclamation non valide! ").darkStyle().hideAfter(Duration.seconds(30)).showWarning();
             }
-        } else if (reclmationtxt.getText().trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Ajout reclamation");
-            alert.setHeaderText("Erreur sur l'ajout");
-            alert.setContentText("il vous manque des informations a remplir!");
-            alert.show();
-            Notifications.create().title("Attention").text("Vous devez ecrire une reclamation ").darkStyle().showError();
-//            btnReclamer.setOnAction(e -> {
+//        } else if (reclmationtxt.getText().trim().isEmpty()) {
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Ajout reclamation");
+//            alert.setHeaderText("Erreur sur l'ajout");
+//            alert.setContentText("il vous manque des informations a remplir!");
+//            alert.show();
+//            Notifications.create().title("Attention").text("Vous devez ecrire une reclamation ").darkStyle().showError();
+////            btnReclamer.setOnAction(e -> {
 //                graphic = null;
 //                notification(Pos.TOP_LEFT, graphic, Text);
 //                notificationBuilder.showWarning();

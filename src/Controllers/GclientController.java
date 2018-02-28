@@ -48,6 +48,7 @@ import javafx.stage.Stage;
  *
  * @author user16
  */
+
 public class GclientController implements Initializable {
 
     @FXML
@@ -191,9 +192,10 @@ public class GclientController implements Initializable {
                     loga.getText(),
                     noma.getText(),
                     prenoma.getText(),
+                   see.getText(),
                     emaila.getText(),
                     passworda.getText(),
-                    adressa.getText());
+                    adressa.getText(),Integer.parseInt(etat.getText()));
             try {
                 ClientDAO cd1 = new ClientDAO();
                 cd1.updateC(c);

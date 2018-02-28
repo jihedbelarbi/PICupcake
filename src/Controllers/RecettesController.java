@@ -8,6 +8,7 @@ package Controllers;
 import Entities.Recette;
 import static Controllers.LoginController.usernid;
 import Entities.Client;
+import Services.ClientDAO;
 import Services.Recette_Dao;
 import java.io.File;
 import java.io.IOException;
@@ -77,6 +78,9 @@ public class RecettesController implements Initializable {
     private Button ajouR;
     @FXML
     private TextField sF;
+    @FXML
+    private Label labcl;
+    ClientDAO cd1=new ClientDAO();
 
     /**
      * Initializes the controller class.
@@ -93,11 +97,14 @@ public class RecettesController implements Initializable {
 
                     if (newValue == null || newValue.isEmpty()) {
                         return true;
-                    }
+                    } 
                     String lowerCaseFilter = newValue.toLowerCase();
-                    if ((rec.getIngd().contains(newValue)) || (rec.getLibelle().contains(newValue))) {
-                        return true;
-                    }
+                
+                        if ((rec.getIngd().contains(newValue)) || (rec.getLibelle().contains(newValue)))
+//                                ||(cd1.findByID(rec.getId_client())).getLogin().contains(newValue)  ) {
+                                {  return true;
+                        }
+                   
                     return false;
                 });
                 SortedList<Recette> RecsTries = new SortedList<>(listeFiltre);
@@ -121,7 +128,7 @@ public class RecettesController implements Initializable {
     }
 
     @FXML
-    private void selectrec(MouseEvent event) {
+    private void selectrec(MouseEvent event) throws SQLException {
         ancr.setVisible(true);
         ingred.setEditable(false);
         descript.setEditable(false);
@@ -132,6 +139,7 @@ public class RecettesController implements Initializable {
         String imageURI = new File(path).toURI().toString();
         Image image = new Image(imageURI);
         img1.setImage(image);
+        
         ingred.setText(recs
                 .get(table.getSelectionModel().getSelectedIndex()).getIngd());
         labtitre.setText(recs
@@ -145,6 +153,9 @@ public class RecettesController implements Initializable {
         );
 
         int idr = recs.get(table.getSelectionModel().getSelectedIndex()).getId_client();
+        String cl=cd1.findByID(idr).getNom()+" "+cd1.findByID(idr).getPrenom();
+        labcl.setText("Par :" +"  "+cl);
+        
         if (idr == usernid) {
             modifR.setVisible(true);
             suppR.setVisible(true);

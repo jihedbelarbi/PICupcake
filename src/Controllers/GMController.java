@@ -7,6 +7,7 @@ package Controllers;
 
 import Entities.Boutique;
 import Entities.Client;
+import Services.PatisserieDAO;
 import Tools.DataSource;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
@@ -86,11 +87,12 @@ public class GMController implements Initializable, MapComponentInitializedListe
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         mapView.addMapInializedListener(this);
+        PatisserieDAO pd1 = new PatisserieDAO();
         try {
             List<Boutique> lb = readAll();
             for (Boutique b : lb) {
                 Location l = new Location();
-                l.setName(b.getNom());
+                l.setName(pd1.findById(b.getId_patisserie()).getNom());
                 l.setLatitude(b.getLati());
                 l.setLongitude(b.getLongi());
                 locb.add(l);
@@ -165,9 +167,9 @@ public class GMController implements Initializable, MapComponentInitializedListe
                         MarkerOptions markerOptions = new MarkerOptions();
                         markerOptions.position(new LatLong(l1.getLatitude(), l1.getLongitude()));
                         Marker mark = new Marker(markerOptions);
-                        
-                         map.addMarker(mark);
-                      
+
+                        map.addMarker(mark);
+
                         InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
                         infoWindowOptions.content("<h2>" + l1.getName() + "</h2>"
                                 + " Location :" + pos + "<br>");
@@ -188,7 +190,7 @@ public class GMController implements Initializable, MapComponentInitializedListe
         String req = "Select * from boutique;";
         ResultSet rs = ste.executeQuery(req);
         while (rs.next()) {
-            Boutique p = new Boutique(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6));
+            Boutique p = new Boutique(rs.getInt(1), rs.getInt(2), rs.getDouble(3), rs.getDouble(4), rs.getInt(5));
             v.add(p);
         }
         return v;

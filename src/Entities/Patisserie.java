@@ -42,6 +42,8 @@ public class Patisserie {
     public Patisserie(int ID) {
         this.ID = ID;
     }
+   
+ 
 
     public Patisserie(int ID, String login, String nom, String email, String password) {
         this.ID = ID;
@@ -243,4 +245,14 @@ public class Patisserie {
         this.verif = verif;
     }
 
+  public Patisserie( String login, String nom, String email, String password, String image, int etat, int verif) {
+       
+        this.login = login;
+        this.nom = nom;
+        this.email = email;
+        this.password = password;
+        this.image = image;
+        this.etat = etat;
+        this.verif = verif;
+    }
 }

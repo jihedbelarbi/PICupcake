@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cupcake;
 
 import java.io.IOException;
@@ -12,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
@@ -24,11 +22,10 @@ public class Cupcake extends Application {
     public void start(Stage stage) throws Exception {
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/login.fxml")); //"/GUI/retourAFrC.fxml"
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/allpatiss.fxml")); //"/GUI/retourAFrC.fxml"
             Scene scene = new Scene(root);
             stage.setScene(scene);
-             stage.setMaximized(true);
-             stage.initStyle(StageStyle.UNDECORATED);
+
             stage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -41,7 +38,7 @@ public class Cupcake extends Application {
     public static void main(String[] args) {
 
         launch(args);
-        
+
     }
 
 }

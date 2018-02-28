@@ -149,8 +149,10 @@ public class LoginController implements Initializable {
         String pswd = txtPassword.getText();
         ClientDAO ctDao = new ClientDAO();
         PatisserieDAO ptDao = new PatisserieDAO();
-        String val = combobox.getValue();
-
+       String val = combobox.getValue();
+       
+      if(!(combobox.isPressed())){ msgbox("choisir utilisateur");}
+    
         switch (val) {
             case "Administrateur":
 
@@ -174,9 +176,11 @@ public class LoginController implements Initializable {
                     if (p1 == null) {
                         msgbox("  Veuillez vous inscrire !");
                     }
-                    if ((user.equals(p1.getLogin())) && (pswd.equals(p1.getPassword())) && (p1.getEtat() == 1)) {
+                    
+                    if ((p1.getEtat() == 1) && (user.equals(p1.getLogin())) && (pswd.equals(p1.getPassword()))) {
 
                         try {
+                            anv.setVisible(false);
                             Stage st = new Stage();
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/patiissint.fxml"));
                             Region root = (Region) loader.load();
@@ -189,15 +193,14 @@ public class LoginController implements Initializable {
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.hide();
                             Scene scene = new Scene(root);
-                            st.setMaximized(true);
-                            st.initStyle(StageStyle.UNDECORATED);
                             st.setScene(scene);
                             st.show();
 
                         } catch (IOException ex) {
                             Logger.getLogger(GclientController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } else if ((user.equals(p1.getLogin())) && (pswd.equals(p1.getPassword())) && (p1.getEtat() == 0)) {
+                    } 
+                    if ((p1.getEtat() == 0) && (user.equals(p1.getLogin())) && (pswd.equals(p1.getPassword())) ) {
                         anv.setVisible(true);
                         if (Integer.parseInt(verif.getText()) == p1.getVerif()) {
                             p1.setEtat(1);
@@ -215,8 +218,6 @@ public class LoginController implements Initializable {
                                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                 stage.hide();
                                 Scene scene = new Scene(root);
-                                st.setMaximized(true);
-                                st.initStyle(StageStyle.UNDECORATED);
                                 st.setScene(scene);
                                 st.show();
 
@@ -226,7 +227,8 @@ public class LoginController implements Initializable {
                         } else {
                             labC.setText("Verifier le code envoyé !");
                         }
-                    } else if (!((user.equals(p1.getLogin())) && (pswd.equals(p1.getPassword())))) {
+                    } 
+                    if (!((user.equals(p1.getLogin())) && (pswd.equals(p1.getPassword())))) {
                         msgbox("  Login ou mot de passe erroné !");
 
                     }
@@ -244,7 +246,7 @@ public class LoginController implements Initializable {
                     System.out.println(p1);
                     if (p1 == null) {
                         msgbox("  Veuillez vous inscrire !");
-                    }
+                    } else{
                     if (user.equals(p1.getLogin()) && pswd.equals(p1.getMdp()) && p1.getEtat() == 1) {
                         try {
                             Stage st = new Stage();
@@ -271,7 +273,8 @@ public class LoginController implements Initializable {
                     } else if (!(user.equals(p1.getLogin()) && pswd.equals(p1.getMdp()))) {
                         msgbox("  Login ou mot de passe erroné !");
                     }
-                } else {
+                } }
+                else {
                     msgbox("Données invalides, Verifier les champs !");
                     txtUsername.setText("");
                     txtPassword.setText("");

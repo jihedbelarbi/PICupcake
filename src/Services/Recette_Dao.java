@@ -85,22 +85,23 @@ public class Recette_Dao {
             Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
         } }
       
-     public List<Recette> readAll() throws SQLException{
-        List<Recette> v=new ArrayList<Recette>();
-        Statement ste=connection.createStatement();
-        String req="Select * from recette ORDER By id DESC";
-        ResultSet rs=ste.executeQuery(req);
-        while (rs.next()) {
-        Recette p=new Recette(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getLong(8),rs.getInt(9));
-        v.add(p);
-        }
-        return v;
-        }
+//     public List<Recette> readAll() throws SQLException{
+//        List<Recette> v=new ArrayList<Recette>();
+//        Statement ste=connection.createStatement();
+//        String req="Select * from recette ORDER By id DESC";
+//        ResultSet rs=ste.executeQuery(req);
+//        while (rs.next()) {
+//        Recette p=new Recette(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getLong(8),rs.getInt(9));
+//        v.add(p);
+//        }
+//        return v;
+//        }
      //	id	libelle	duréé	diffic	ingredients	description	image	date	id_client
      
      public ObservableList<Recette> getAll() {
          ObservableList<Recette> list=FXCollections.observableArrayList();       
       String requete = "select * from recette";
+          
         try {
             Statement ste=connection.createStatement();
           ResultSet rs=ste.executeQuery(requete);
@@ -114,22 +115,22 @@ public class Recette_Dao {
         return  list;
           }
 
-     
-      public ObservableList<Recette> getAllC(int id) {
-         ObservableList<Recette> list=FXCollections.observableArrayList();       
-      String requete = "select * from recette where id_client=" +id;
-        try {
-            Statement ste=connection.createStatement();
-          ResultSet rs=ste.executeQuery(requete);
-            while (rs.next()) { 
-           Recette p=new Recette(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getLong(8),rs.getInt(9));
-                 list.add(p);
-            }
-        }  catch (SQLException ex) {
-             System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
-        } 
-        return  list;
-          }
+//     
+//      public ObservableList<Recette> getAllC(int id) {
+//         ObservableList<Recette> list=FXCollections.observableArrayList();       
+//      String requete = "select * from recette where id_client=" +id;
+//        try {
+//            Statement ste=connection.createStatement();
+//          ResultSet rs=ste.executeQuery(requete);
+//            while (rs.next()) { 
+//           Recette p=new Recette(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getLong(8),rs.getInt(9));
+//                 list.add(p);
+//            }
+//        }  catch (SQLException ex) {
+//             System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+//        } 
+//        return  list;
+//          }
 
      
       public Recette findByID(int id) throws SQLException{

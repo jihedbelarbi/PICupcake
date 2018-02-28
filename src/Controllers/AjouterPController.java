@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Entities.EmailController;
 import Entities.Patisserie;
 import Services.ClientDAO;
 import Services.PatisserieDAO;
@@ -14,7 +15,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,11 +97,14 @@ public class AjouterPController implements Initializable {
     File fileWritten;
     BufferedImage bufferedImage;
     WritableImage image;
+    Connection connection;
 
     private void msgbox(String s) {
         JOptionPane.showMessageDialog(null, s);
     }
 
+    
+    
     //control saisi
     public boolean validateMail() {
         Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+");
@@ -133,13 +142,20 @@ public class AjouterPController implements Initializable {
         } else if (mdp.getLength() == 0) {
             this.ps.setText("*court");
         } else {
+           
             ajou.setOnAction(event -> {
                 Patisserie c = new Patisserie(login.getText(), nom.getText(),
-                        mail.getText(), mdp.getText(), imagePath);
+                        mail.getText(), mdp.getText(), imagePath,0,93207);
 
                 PatisserieDAO cd1 = new PatisserieDAO();
                 try {
                     cd1.insertP(c);
+                    //envoie du mail 
+                    EmailController sendm = new EmailController(c.getEmail(), "Bienvenue a Cupcake " + "  "
+                            + c.getNom(), "Veuillez confirmer votre compte" + "\n" + "Email :  " + c.getEmail()
+                            + "\n" + "Login :  " + c.getLogin() + "\n" + "Mot de passe :  " + c.getPassword()
+                            + "\n" + "Code de verification " + c.getVerif());
+                    sendm.send();
                     msgbox("Un email de verification vous sera envoyé ");
                     Stage st = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/login.fxml"));
@@ -165,12 +181,13 @@ public class AjouterPController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         
         nom.setPromptText("Entrer le nom");
         login.setPromptText("Entrer le login");
         mail.setPromptText("Entrer l'adresse mail");
         mdp.setPromptText("Entrer le mot de passe");
         ajou.setOnAction(event -> isValide(nom, login, mail, mdp));
-
+      
     }
 
     @FXML
@@ -199,4 +216,8 @@ public class AjouterPController implements Initializable {
         }
 
     }
+
+
+ 
+
 }

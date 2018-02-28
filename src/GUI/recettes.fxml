@@ -31,10 +31,10 @@
       <AnchorPane fx:id="ancr" layoutX="257.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1048.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
             <TextArea fx:id="brief" editable="false" layoutX="490.0" layoutY="60.0" prefHeight="65.0" prefWidth="448.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="60.0" />
-            <ImageView fx:id="img1" fitHeight="283.0" fitWidth="488.0" layoutX="12.0" layoutY="17.0" pickOnBounds="true" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="548.0" AnchorPane.topAnchor="17.0" />
+            <ImageView fx:id="img1" fitHeight="272.0" fitWidth="488.0" layoutX="12.0" layoutY="28.0" pickOnBounds="true" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="548.0" AnchorPane.topAnchor="28.0" />
             <TextArea fx:id="ingred" editable="false" layoutX="490.0" layoutY="160.0" prefHeight="143.0" prefWidth="448.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="160.0" />
             <TextArea fx:id="descript" editable="false" layoutX="17.0" layoutY="394.0" prefHeight="257.0" prefWidth="911.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="82.0" />
-            <Label fx:id="labtitre" layoutX="490.0" layoutY="15.0" prefHeight="35.0" prefWidth="352.0" textFill="#dd7a7a" AnchorPane.rightAnchor="181.0" AnchorPane.topAnchor="15.0">
+            <Label fx:id="labtitre" layoutX="515.0" layoutY="28.0" prefHeight="35.0" prefWidth="352.0" textFill="#dd7a7a" AnchorPane.rightAnchor="181.0" AnchorPane.topAnchor="28.0">
                <font>
                   <Font name="Forte" size="30.0" />
                </font>
@@ -59,6 +59,11 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+            <Label fx:id="labcl" layoutX="25.0" layoutY="6.0" prefHeight="25.0" prefWidth="244.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Label layoutX="317.0" layoutY="24.0" text="Search :">
@@ -66,7 +71,7 @@
             <Font name="Forte" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="sF" layoutX="378.0" layoutY="20.0" prefHeight="25.0" prefWidth="204.0" />
+      <TextField fx:id="sF" layoutX="378.0" layoutY="20.0" prefHeight="25.0" prefWidth="302.0" />
       <Button fx:id="ajouR" layoutX="47.0" layoutY="20.0" mnemonicParsing="false" onAction="#ajouR" style="-fx-background-color: lightgrey;" text="Ajouter">
          <font>
             <Font name="System Bold" size="12.0" />

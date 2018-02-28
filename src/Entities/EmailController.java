@@ -40,10 +40,10 @@ public class EmailController {
     }
 
     public EmailController(String reciever, String subj, String con) {
-        username = "zoughlamiimen@gmail.com";
-        password = "allahouakbar123";
-        from = "zoughlamiimen@gmail.com";
-        host = "Smtp.gmail.com";
+        username = "cupcake3a11@gmail.com";
+        password = "cupcake2018";
+        from = "cupcake3a11@gmail.com";
+        host = "smtp.gmail.com";
         put_auth = "mail.smtp.auth";
         put_ttls = "mail.smtp.starttls.enable";
         put_host = "mail.smtp.host";

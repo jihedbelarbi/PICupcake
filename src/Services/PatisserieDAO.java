@@ -43,8 +43,8 @@ public class PatisserieDAO {
             ps.setString(3, p.getEmail());
             ps.setString(4, p.getPassword());
             ps.setString(5, p.getImage());
-            ps.setInt(6, 0);
-            ps.setInt(7, 0);
+            ps.setInt(6, p.getEtat());
+            ps.setInt(7, p.getVerif());
 
             ps.executeUpdate();
 
@@ -101,8 +101,8 @@ public class PatisserieDAO {
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setString(1, log);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) { //id,nom,login,email,password
-                p = new Patisserie(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+            while (rs.next()) { //id,nom,login,email,password,image,etat,verif
+            p = new Patisserie(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
                 return p;
             }
         } catch (SQLException ex) {

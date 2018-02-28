@@ -15,16 +15,23 @@ import javafx.beans.property.SimpleStringProperty;
 public class Boutique {
 
     private int id_boutique;
-    private String nom;
     private int numero;
     private double lati;
     private double longi;
     private int id_patisserie;
 //    nom numero lat long
 
-    public Boutique(int id_boutique, String nom, int numero, double lati, double longi, int id_patisserie) {
+    public Boutique(int id_boutique,  int numero, double lati, double longi, int id_patisserie) {
         this.id_boutique = id_boutique;
-        this.nom = nom;
+        
+        this.numero = numero;
+        this.lati = lati;
+        this.longi = longi;
+        this.id_patisserie = id_patisserie;
+    }
+
+    public Boutique(int numero, double lati, double longi,int id_patisserie ) {
+       
         this.numero = numero;
         this.lati = lati;
         this.longi = longi;
@@ -39,13 +46,7 @@ public class Boutique {
         this.id_boutique = id_boutique;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+   
 
     public int getNumero() {
         return numero;
@@ -81,7 +82,7 @@ public class Boutique {
 
     @Override
     public String toString() {
-        return "Boutique{" + "id_boutique=" + id_boutique + ", nom=" + nom + ", numero=" + numero + ", lati=" + lati + ", longi=" + longi + ", id_patisserie=" + id_patisserie + '}';
+        return "Boutique{" + "id_boutique=" + id_boutique +  ", numero=" + numero + ", lati=" + lati + ", longi=" + longi + ", id_patisserie=" + id_patisserie + '}';
     }
 
     public SimpleIntegerProperty getIdProperty() {
@@ -89,10 +90,7 @@ public class Boutique {
         return x;
     }
 
-    public SimpleStringProperty getnomProperty() {
-        SimpleStringProperty x = new SimpleStringProperty(nom);
-        return x;
-    }
+ 
 
     public SimpleIntegerProperty getnumProperty() {
         SimpleIntegerProperty x = new SimpleIntegerProperty(numero);

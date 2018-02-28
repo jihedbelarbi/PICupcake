@@ -22,8 +22,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import static Controllers.LoginController.patid;
 import Services.PatisserieDAO;
+import static Controllers.LoginController.patid;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -155,10 +155,15 @@ public class PatiissintController implements Initializable {
             case 0:{
                 con.loadAnchorPane(paneData, "infopat.fxml");
             }break;
-//            case 2:{
-//                con.loadAnchorPane(paneData, "Boutique.fxml");
-//            }break;
-            
+            case 1:{
+                con.loadAnchorPane(paneData, "listeprod.fxml");
+            }break;
+            case 2 :{
+                con.loadAnchorPane(paneData, "Boutique.fxml");
+            }break;   
+         case 3 :{
+                con.loadAnchorPane(paneData, "Promotion.fxml");
+            }break; 
         }
     }
 

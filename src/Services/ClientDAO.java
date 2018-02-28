@@ -151,7 +151,7 @@ public class ClientDAO {
         return p;
     }
 
-    public Client findByID(int id) throws SQLException {
+    public Client findByID(int id){
         Client p = null;
         String requete = "select * from client where id=?";
         try {

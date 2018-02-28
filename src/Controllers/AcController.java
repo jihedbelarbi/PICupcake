@@ -172,7 +172,10 @@ public class AcController implements Initializable {
             case 7:{
                 con.loadAnchorPane(paneData, "Reclamation.fxml");
             }break;
-              
+            case 1:{
+                con.loadAnchorPane(paneData, "prodclient.fxml");
+            }break;
+            
         }
     }
 

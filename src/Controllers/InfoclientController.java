@@ -56,7 +56,7 @@ public class InfoclientController implements Initializable {
 
         Client p1;
         ClientDAO ctDao = new ClientDAO();
-        try {
+     
             p1 = ctDao.findByID(usernid);
 
             login.setText(p1.getLogin());
@@ -66,9 +66,6 @@ public class InfoclientController implements Initializable {
             mdp.setText(p1.getMdp());
             adresse.setText(p1.getAddress());
 
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
 
     }
 
