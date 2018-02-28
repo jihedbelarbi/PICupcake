@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="645.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReclamationController">
+<AnchorPane id="AnchorPane" prefHeight="645.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReclamationController">
    <children>
       <Pane layoutX="1.0" prefHeight="645.0" prefWidth="575.0">
          <children>
@@ -16,7 +16,7 @@
             <Label layoutX="90.0" layoutY="200.0" text="Patisserie" />
             <Label layoutX="90.0" layoutY="344.0" text="Reclamation" />
             <Label layoutX="90.0" layoutY="245.0" prefHeight="17.0" prefWidth="50.0" text="Date" />
-            <TextField fx:id="CC" layoutX="226.0" layoutY="152.0" prefHeight="28.0" prefWidth="225.0" promptText="Nom Client" />
+            <TextField fx:id="CC" editable="false" layoutX="226.0" layoutY="152.0" prefHeight="28.0" prefWidth="225.0" />
             <TextField fx:id="reclmationtxt" alignment="TOP_LEFT" layoutX="229.0" layoutY="291.0" prefHeight="163.0" prefWidth="225.0" promptText="Tapez votre reclamation içi" />
             <Button fx:id="btnReclamer" layoutX="175.0" layoutY="493.0" mnemonicParsing="false" onAction="#Reclamer" prefHeight="56.0" prefWidth="225.0" text="Reclamer" />
             <Label fx:id="titlM" layoutX="140.0" layoutY="44.0" prefHeight="56.0" prefWidth="296.0" text="Veuillez saisir vos donées" textFill="#3bace1">

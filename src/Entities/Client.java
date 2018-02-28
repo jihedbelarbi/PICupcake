@@ -44,6 +44,11 @@ public class Client {
     public Client() {
     }
 
+    public Client(int id, String Nom) {
+        this.id = id;
+        this.Nom = Nom;
+    }
+
     public Client(String login, String Nom, String prenom,String sexe, String mail, String mdp, String address) {
         this.login = login;
         this.Nom = Nom;

@@ -146,6 +146,9 @@ public class CpController implements Initializable {
             case 1:{
                 con.loadAnchorPane(paneData, "Gpatisserie.fxml");
             }break;
+            case 2:{
+                con.loadAnchorPane(paneData, "Reclamationliste.fxml");
+            }break;
             
         }
     }

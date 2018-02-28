@@ -12,8 +12,6 @@ import Tools.config2;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -172,7 +170,7 @@ public class AcController implements Initializable {
                 con.loadAnchorPane(paneData, "allPatiss.fxml");
             }break;
             case 7:{
-                con.loadAnchorPane(paneData, "jiheeeeeedRec.fxml");
+                con.loadAnchorPane(paneData, "Reclamation.fxml");
             }break;
               
         }

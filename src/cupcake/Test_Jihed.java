@@ -23,13 +23,13 @@ public class Test_Jihed extends Application {
     public static Patisserie patisserie;
 
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXMLtest.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/GUI/FXMLtest.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/GUI/suggestionliste.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/GUI/feedback.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/GUI/Listefeedback.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/GUI/feedbackliste.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/GUI/Reclamation.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/GUI/Reclamationliste.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Reclamationliste.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

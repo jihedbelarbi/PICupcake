@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DataSource {
 
-        String url="jdbc:mysql://127.0.0.1/esprit";
+        String url="jdbc:mysql://127.0.0.1/cupcake";
         String login="root";
         String password="";
         private Connection con;

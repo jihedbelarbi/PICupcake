@@ -146,5 +146,21 @@ public class PatisserieDAO {
         }
         return list;
     }
+    public Patisserie findByName(String log) {
+        Patisserie p = null;
+        String requete = "select * from patisserie where nom=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, log);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                p = new Patisserie(rs.getInt(1));
+                return p;
+            }
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
 
 }

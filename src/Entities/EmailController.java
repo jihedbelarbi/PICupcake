@@ -26,9 +26,9 @@ public class EmailController {
     String put_port;
 
     public EmailController() {
-        username = "zoughlamiimen@gmail.com";
-        password = "allahouakbar123";
-        from = "zoughlamiimen@gmail.com";
+        username = "cupcake3a11@gmail.com";
+        password = "cupcake2018";
+        from = "cupcake3a11@gmail.com";
         host = "Smtp.gmail.com";
         reciever = "imen.zoughlami@esprit.tn";
         subj = "HEllo";

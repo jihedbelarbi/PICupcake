@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="892.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReclamationlisteController">
+<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="892.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReclamationlisteController">
    <children>
       <Label fx:id="lab1" layoutX="14.0" layoutY="3.0" prefHeight="50.0" prefWidth="350.0" text="Liste des Reclamations" textFill="#54e8cc">
          <font>

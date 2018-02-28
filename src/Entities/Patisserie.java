@@ -39,12 +39,21 @@ public class Patisserie {
         this.image = image;
     }
 
+    public Patisserie(int ID) {
+        this.ID = ID;
+    }
+
     public Patisserie(int ID, String login, String nom, String email, String password) {
         this.ID = ID;
         this.login = login;
         this.nom = nom;
         this.email = email;
         this.password = password;
+    }
+
+    public Patisserie(int ID, String nom) {
+        this.ID = ID;
+        this.nom = nom;
     }
 
     public Patisserie(String login, String nom, String email, String password) {
