@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="GUI.FeedbackController">
+   <children>
+      <TextArea fx:id="id_comment" layoutX="89.0" layoutY="142.0" prefHeight="169.0" prefWidth="434.0" promptText="Commentaire" />
+      <Text layoutX="89.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feedback" />
+      <Button fx:id="btn_ajout" layoutX="262.0" layoutY="333.0" mnemonicParsing="false" onAction="#Ajouter_Comment" text="Ajouter" />
+   </children>
+</AnchorPane>
