@@ -5,7 +5,10 @@
  */
 package Controllers;
 
+import static Controllers.LoginController.usernid;
+import Entities.FeedBack;
 import Entities.Produit;
+import Services.CRUD_FeedBack;
 import Services.PatisserieDAO;
 import Services.Service_produit;
 import Tools.DataSource;
@@ -18,9 +21,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import static java.time.zone.ZoneRulesProvider.refresh;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,34 +69,40 @@ public class ProdclientController implements Initializable {
     @FXML
     private TextField search;
     Connection con = DataSource.getInstance().getConnection();
-
+    
+    
     private Statement st;
     PreparedStatement pste;
+    static int idprod;
 
     private ResultSet rs;
     Service_produit sv_p = new Service_produit();
     PatisserieDAO pc = new PatisserieDAO();
+
     @FXML
-    private TableView<?> feedback;
-    static int idprod;
+    private TableView<FeedBack> feedback;
     @FXML
-    private TableColumn<?, ?> Client;
+    private TableColumn<FeedBack, String> Client;
     @FXML
-    private TableColumn<?, ?> date;
+    private TableColumn<FeedBack, String> description;
     @FXML
-    private TableColumn<?, ?> description;
+    private TableColumn<FeedBack, String> date;
     @FXML
-    private TableColumn<?, ?> id_feedback;
+    private TableColumn<FeedBack, Integer> id_feedback;
     @FXML
     private TextArea id_comment;
     @FXML
     private Button btn_ajout;
+  String dat;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+   DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        dat=dateFormat.format(date);
+        
         afficher();
         ancr.setVisible(false);
 
@@ -101,15 +117,10 @@ public class ProdclientController implements Initializable {
         String imageURI = new File(path).toURI().toString();
         Image image = new Image(imageURI);
         imgP.setImage(image);
-        
+
         idprod = prods.get(table.getSelectionModel().getSelectedIndex()).getId_produit();
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Listefeedback.fxml"));
-//        Region root = (Region) loader.load();
-//        ListefeedbackController FC = loader.<ListefeedbackController>getController();
-//        FC.setIdprod(id);
-        
-        
-        
+        Afficher_Comment(idprod);
+
         txtinf.setText("      " + prods
                 .get(table.getSelectionModel().getSelectedIndex()).getLibellé() + "\n"
                 + "Description : " + prods
@@ -169,10 +180,44 @@ public class ProdclientController implements Initializable {
 
     @FXML
     private void Modifier_Comment(MouseEvent event) {
+        
+        
     }
 
     @FXML
-    private void Ajouter_Comment(ActionEvent event) {
+    private void Ajouter_Comment(ActionEvent event) throws SQLException {
+         CRUD_FeedBack cf = new CRUD_FeedBack();
+        FeedBack f = new FeedBack(usernid, idprod, id_comment.getText(), dat);
+        cf.insertFeedBackProd(f);
+        refresh();
+        System.out.println("**********************************");
+        System.out.println(idprod);
+        System.out.println("**********************************");
+        Afficher_Comment(idprod);
+        
     }
+
+    
+    private void Afficher_Comment(int id) {
+
+        try {
+            //Client.setCellValueFactory(new PropertyValueFactory<>("id_client"));
+
+            Client.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, String> FeedBack) -> new SimpleStringProperty(FeedBack.getValue().getClient().getNom()));
+            date.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, String> FeedBack) -> new SimpleStringProperty(FeedBack.getValue().getDate()));
+            description.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, String> FeedBack) -> new SimpleStringProperty(FeedBack.getValue().getDescription()));
+            id_feedback.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, Integer> FeedBack) -> new SimpleIntegerProperty(FeedBack.getValue().getId_feedback()).asObject());
+           
+            CRUD_FeedBack cf = new CRUD_FeedBack();
+            ObservableList<FeedBack> FeedBacks = FXCollections.observableArrayList((ArrayList<FeedBack>) cf.displayAllFeedBackProd(id));
+            feedback.setItems(FeedBacks);
+            System.out.println("**********************************");
+            System.out.println(id);
+            System.out.println("**********************************");
+        } catch (SQLException ex) {
+            Logger.getLogger(ListefeedbackController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
 }
