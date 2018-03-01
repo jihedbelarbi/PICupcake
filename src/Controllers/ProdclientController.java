@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import static java.time.zone.ZoneRulesProvider.refresh;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -120,6 +121,7 @@ public class ProdclientController implements Initializable {
     @FXML
     public void selectprod(MouseEvent event) throws SQLException, IOException {
         ancr.setVisible(true);
+        fav.setVisible(false);
         String path = prods
                 .get(table.getSelectionModel().getSelectedIndex())
                 .getImage();
@@ -142,16 +144,23 @@ public class ProdclientController implements Initializable {
                         .get(table.getSelectionModel().getSelectedIndex()).getDisponiblité() + "\n"
                 + "Patisserie : " + pc.findById(prods.get(table.getSelectionModel().getSelectedIndex()).getId_patisserie()).getNom()
         );
-       service_favoris sf = new service_favoris();
-        fav.setOnAction(event1 -> {
+        
+        service_favoris sv1=new service_favoris();
+        List<favoris> listf=sv1.getAll(usernid);
+//        
+//        if(sv1.findByIDPC(usernid, idprod)!=null)      
+//               {fav.setVisible(false);
+//        } else { 
+            fav.setVisible(true);
+            fav.setOnAction(event1 -> {
            favoris f = new favoris(usernid,idprod);
             try { 
-                sf.insertfavoris(f);
+                sv1.insertfavoris(f);
             } catch (SQLException ex) {
                 Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
             }
        
-        } );
+        } ); 
 
     }
 

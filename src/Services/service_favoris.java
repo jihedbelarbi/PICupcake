@@ -84,7 +84,36 @@ public class service_favoris {
         }
         return listfavoris;
     }
-
+ public List<favoris> getAll(int id) throws SQLException {
+        String requete = "SELECT * FROM favoris where id_client =" + id;
+        st = con.createStatement();
+        rs = st.executeQuery(requete);
+        List<favoris> listfavoris = new ArrayList<>();
+        while (rs.next()) {
+        favoris ab = new favoris(rs.getInt(1),rs.getInt(2),rs.getInt(3));
+            listfavoris.add(ab);
+        }
+        return listfavoris;
+    }
   
-
+  public favoris findByIDPC(int idc,int idP) {
+        favoris p = null;
+        String requete = "SELECT * FROM favoris WHERE id_client=? AND id_produit=?";
+       
+         try {
+            PreparedStatement ps = con.prepareStatement(requete);
+            ps.setInt(1, idc);
+            ps.setInt(2, idP);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) { //id,nom,login,email,password
+                favoris ab = new favoris(rs.getInt(1),rs.getInt(2),rs.getInt(3));
+            return p;
+            }
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la recherche du depot " + ex.getMessage());
+        }
+        return p;
+        
+    }
 }

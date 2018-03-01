@@ -41,8 +41,14 @@ public class favoris {
 
     public favoris() {
     }
-    
 
+    public favoris(int id_favoris, int id_client, int id_produit) {
+        this.id_favoris = id_favoris;
+        this.id_client = id_client;
+        this.id_produit = id_produit;
+    }
+    
+  
     
     public favoris(int id_favoris, Produit produit, Client client) {
         this.id_favoris = id_favoris;
