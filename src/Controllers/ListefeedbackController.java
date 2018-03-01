@@ -30,14 +30,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+//import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextInputDialog;
+//import javafx.scene.control.TextInputDialog;
 
 /**
  * FXML Controller class
@@ -116,18 +116,18 @@ public class ListefeedbackController implements Initializable {
         TablePosition pos = feedback.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         if (pos.getColumn() == 0) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning Dialog");
-            alert.setHeaderText("Erreur");
-            alert.setContentText("Une erreur est survenu lors de la modification");
-            alert.showAndWait();
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Warning Dialog");
+//            alert.setHeaderText("Erreur");
+//            alert.setContentText("Une erreur est survenu lors de la modification");
+//            alert.showAndWait();
         }
         if (pos.getColumn() == 1) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning Dialog");
-            alert.setHeaderText("Erreur");
-            alert.setContentText("Une erreur est survenu lors de la modification");
-            alert.showAndWait();
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Warning Dialog");
+//            alert.setHeaderText("Erreur");
+//            alert.setContentText("Une erreur est survenu lors de la modification");
+//            alert.showAndWait();
         }
         // Item here is the table view type:
         FeedBack item = feedback.getItems().get(row);
@@ -135,20 +135,20 @@ public class ListefeedbackController implements Initializable {
 
         // this gives the value in the selected cell:
         String data = (String) col.getCellObservableValue(item).getValue();
-        TextInputDialog dialog = new TextInputDialog(data);
-        dialog.setTitle("Modifier");
-        dialog.setHeaderText("Fenetre de modification");
-        dialog.setContentText("Modifier la cellule:");
-        int Colo = pos.getColumn();
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            if (Colo == 2) {
-                modifier.setId_feedback(item.getId_feedback());
-                modifier.setDescription(result.get());
-                f.updateFeedBackP(modifier);
-                System.out.println(modifier);
-            }
-        }
+//        TextInputDialog dialog = new TextInputDialog(data);
+//        dialog.setTitle("Modifier");
+//        dialog.setHeaderText("Fenetre de modification");
+//        dialog.setContentText("Modifier la cellule:");
+//        int Colo = pos.getColumn();
+//        Optional<String> result = dialog.showAndWait();
+//        if (result.isPresent()) {
+//            if (Colo == 2) {
+//                modifier.setId_feedback(item.getId_feedback());
+//                modifier.setDescription(result.get());
+//                f.updateFeedBackP(modifier);
+//                System.out.println(modifier);
+//            }
+//        }
         Afficher_Comment(idprod);
     }
 }

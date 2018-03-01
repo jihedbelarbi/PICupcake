@@ -39,6 +39,12 @@ public class Produit {
         this.type_Produit = type_Produit;
     }
 
+    public Produit(String libellé, String description, float prix) {
+        this.libellé = libellé;
+        this.description = description;
+        this.prix = prix;
+    }
+
     public Produit(String libellé, String description, float prix, String disponiblité, int id_patisserie, String type_Produit, String image) {
         this.libellé = libellé;
         this.description = description;
