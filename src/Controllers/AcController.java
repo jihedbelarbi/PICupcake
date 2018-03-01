@@ -72,7 +72,7 @@ public class AcController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
           rec2 = Screen.getPrimary().getVisualBounds(); 
-          listMenu.getItems().addAll("Accueil", "Produits","Patisseries","Nouveautées "," Promotions ","Recettes","Mon compte","Reclamtion");
+          listMenu.getItems().addAll( "Produits","Patisseries","Recettes","Mon compte","Reclamtion");
           
           UC.setText(String.valueOf(usernid));    
                 
@@ -86,8 +86,8 @@ public class AcController implements Initializable {
             maximize.getStyleClass().add("decoration-button-restore");
             resize.setVisible(false);
             
-            listMenu.getSelectionModel().select(5);
-            con.loadAnchorPane(paneData, "recettes.fxml"); //pane
+            listMenu.getSelectionModel().select(0);
+            con.loadAnchorPane(paneData, "prodclient.fxml"); //pane
             listMenu.requestFocus();
             
         });
@@ -160,19 +160,19 @@ public class AcController implements Initializable {
     @FXML
     private void aksiKlikListMenu(MouseEvent event) {
         switch(listMenu.getSelectionModel().getSelectedIndex()){
-            case 5:{
+            case 2:{
                 con.loadAnchorPane(paneData, "recettes.fxml");
             }break;
-            case 6:{
+            case 3:{
                 con.loadAnchorPane(paneData, "comptC.fxml");
             }break;
-            case 2:{
+            case 1:{
                 con.loadAnchorPane(paneData, "allPatiss.fxml");
             }break;
-            case 7:{
+            case 4:{
                 con.loadAnchorPane(paneData, "Reclamation.fxml");
             }break;
-            case 1:{
+            case 0:{
                 con.loadAnchorPane(paneData, "prodclient.fxml");
             }break;
             

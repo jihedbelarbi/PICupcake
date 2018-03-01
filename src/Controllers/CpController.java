@@ -61,7 +61,7 @@ public class CpController implements Initializable {
         rec2 = Screen.getPrimary().getVisualBounds(); 
         w = 0.1;
         h = 0.1;
-        listMenu.getItems().addAll(" Gestion des Clients", "  Gestion des patisseries","  Gestion des reclamations"," Gestion des Boutiques"," Gestion des Recettes");
+        listMenu.getItems().addAll(" Gestion des Clients", "  Gestion des patisseries","  Gestion des reclamations"," Gestion des Recettes");
         Platform.runLater(() -> {
             stage = (Stage) maximize.getScene().getWindow();
             stage.setMaximized(true);
@@ -148,6 +148,9 @@ public class CpController implements Initializable {
             }break;
             case 2:{
                 con.loadAnchorPane(paneData, "Reclamationliste.fxml");
+            }break;
+              case 3:{
+                con.loadAnchorPane(paneData, "recAd.fxml");
             }break;
             
         }
