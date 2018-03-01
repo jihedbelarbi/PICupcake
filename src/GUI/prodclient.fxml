@@ -24,11 +24,11 @@
                <font>
                   <Font name="Forte" size="19.0" />
                </font></TextArea>
-            <TableView fx:id="feedback" layoutX="298.0" layoutY="383.0" onMouseClicked="#Modifier_Comment" prefHeight="203.0" prefWidth="558.0">
+            <TableView fx:id="feedback" layoutX="298.0" layoutY="383.0" onMouseClicked="#Modifier_Comment" prefHeight="203.0" prefWidth="558.0" stylesheets="@../css/css.css">
                <columns>
-                  <TableColumn fx:id="Client" prefWidth="96.00006103515625" text="Client" />
-                  <TableColumn fx:id="date" prefWidth="96.0" text="Date" />
-                  <TableColumn fx:id="description" prefWidth="310.4000244140625" text="Description" />
+                  <TableColumn fx:id="Client" prefWidth="96.00006103515625" />
+                  <TableColumn fx:id="date" prefWidth="96.0" />
+                  <TableColumn fx:id="description" prefWidth="310.4000244140625" />
                   <TableColumn fx:id="id_feedback" editable="false" prefWidth="75.0" text="Column X" visible="false" />
                </columns>
             </TableView>
