@@ -13,26 +13,38 @@ import java.util.Objects;
  */
 public class Rate {
     private int id_rate;
-    private float rate;
+    private double rate;
     private int nbre_rate;
-    private Patisserie patisserie;
+    private int id_patisserie;
 
-    public Rate(int id_rate, float rate, int nbre_rate, Patisserie patisserie) {
+    public Rate(int id_rate, double rate, int nbre_rate, int id_patisserie) {
         this.id_rate = id_rate;
         this.rate = rate;
         this.nbre_rate = nbre_rate;
-        this.patisserie = patisserie;
+        this.id_patisserie = id_patisserie;
     }
 
     public int getId_rate() {
         return id_rate;
     }
 
+    public Rate(double rate,int nbre_rate,int id_patisserie) {
+        this.rate = rate;
+        this.nbre_rate = nbre_rate;
+        this.id_patisserie = id_patisserie;
+    }
+    public Rate(int id_rate,double rate,int nbre_rate ) {
+        this.rate = rate;
+        this.nbre_rate = nbre_rate;
+        this.id_rate = id_rate;
+    }
+
+
     public void setId_rate(int id_rate) {
         this.id_rate = id_rate;
     }
 
-    public float getRate() {
+    public double getRate() {
         return rate;
     }
 
@@ -48,21 +60,22 @@ public class Rate {
         this.nbre_rate = nbre_rate;
     }
 
-    public Patisserie getPatisserie() {
-        return patisserie;
+    public int getId_patisserie() {
+        return id_patisserie;
     }
 
-    public void setPatisserie(Patisserie patisserie) {
-        this.patisserie = patisserie;
+    public void setId_patisserie(int id_patisserie) {
+        this.id_patisserie = id_patisserie;
     }
+
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + this.id_rate;
-        hash = 23 * hash + Float.floatToIntBits(this.rate);
-        hash = 23 * hash + this.nbre_rate;
-        hash = 23 * hash + Objects.hashCode(this.patisserie);
+        hash = 11 * hash + this.id_rate;
+        hash = 11 * hash + (int) (Double.doubleToLongBits(this.rate) ^ (Double.doubleToLongBits(this.rate) >>> 32));
+        hash = 11 * hash + this.nbre_rate;
+        hash = 11 * hash + Objects.hashCode(this.id_patisserie);
         return hash;
     }
 
@@ -81,21 +94,24 @@ public class Rate {
         if (this.id_rate != other.id_rate) {
             return false;
         }
-        if (Float.floatToIntBits(this.rate) != Float.floatToIntBits(other.rate)) {
+        if (Double.doubleToLongBits(this.rate) != Double.doubleToLongBits(other.rate)) {
             return false;
         }
         if (this.nbre_rate != other.nbre_rate) {
             return false;
         }
-        if (!Objects.equals(this.patisserie, other.patisserie)) {
+        if (!Objects.equals(this.id_patisserie, other.id_patisserie)) {
             return false;
         }
         return true;
     }
 
+
+    
+
     @Override
     public String toString() {
-        return "Rate{" + "id_rate=" + id_rate + ", rate=" + rate + ", nbre_rate=" + nbre_rate + ", patisserie=" + patisserie + '}';
+        return "Rate{" + "id_rate=" + id_rate + ", rate=" + rate + ", nbre_rate=" + nbre_rate + ", id_patisserie=" + id_patisserie + '}';
     }
     
     
