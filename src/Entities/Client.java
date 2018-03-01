@@ -44,6 +44,15 @@ public class Client {
     public Client() {
     }
 
+    public Client(String Nom) {
+        this.Nom = Nom;
+    }
+
+    public Client(String Nom, String prenom) {
+        this.Nom = Nom;
+        this.prenom = prenom;
+    }
+
     public Client(int id, String Nom) {
         this.id = id;
         this.Nom = Nom;

@@ -9,7 +9,9 @@ import Entities.Produit;
 import Services.PatisserieDAO;
 import Services.Service_produit;
 import Tools.DataSource;
+import Tools.config2;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,18 +23,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 
 /**
  * FXML Controller class
@@ -54,15 +58,30 @@ public class ProdclientController implements Initializable {
     private ObservableList<Produit> prods = FXCollections.observableArrayList();
     @FXML
     private TextField search;
-    Connection con=  DataSource.getInstance().getConnection();
-   
+    Connection con = DataSource.getInstance().getConnection();
+
     private Statement st;
     PreparedStatement pste;
 
     private ResultSet rs;
-  Service_produit sv_p = new Service_produit();
- PatisserieDAO pc=new PatisserieDAO();
-     /**
+    Service_produit sv_p = new Service_produit();
+    PatisserieDAO pc = new PatisserieDAO();
+    @FXML
+    private TableView<?> feedback;
+    static int idprod;
+    @FXML
+    private TableColumn<?, ?> Client;
+    @FXML
+    private TableColumn<?, ?> date;
+    @FXML
+    private TableColumn<?, ?> description;
+    @FXML
+    private TableColumn<?, ?> id_feedback;
+    @FXML
+    private TextArea id_comment;
+    @FXML
+    private Button btn_ajout;
+    /**
      * Initializes the controller class.
      */
     @Override
@@ -74,7 +93,7 @@ public class ProdclientController implements Initializable {
     }
 
     @FXML
-    public void selectprod(MouseEvent event) throws SQLException {
+    public void selectprod(MouseEvent event) throws SQLException, IOException {
         ancr.setVisible(true);
         String path = prods
                 .get(table.getSelectionModel().getSelectedIndex())
@@ -82,7 +101,15 @@ public class ProdclientController implements Initializable {
         String imageURI = new File(path).toURI().toString();
         Image image = new Image(imageURI);
         imgP.setImage(image);
-
+        
+        idprod = prods.get(table.getSelectionModel().getSelectedIndex()).getId_produit();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Listefeedback.fxml"));
+//        Region root = (Region) loader.load();
+//        ListefeedbackController FC = loader.<ListefeedbackController>getController();
+//        FC.setIdprod(id);
+        
+        
+        
         txtinf.setText("      " + prods
                 .get(table.getSelectionModel().getSelectedIndex()).getLibellé() + "\n"
                 + "Description : " + prods
@@ -92,15 +119,15 @@ public class ProdclientController implements Initializable {
                         .get(table.getSelectionModel().getSelectedIndex()).getPrix() + "\n"
                 + "Disponibilité :"
                 + prods
-                        .get(table.getSelectionModel().getSelectedIndex()).getDisponiblité()+ "\n"
-          +"Patisserie : "+ pc.findById(prods.get(table.getSelectionModel().getSelectedIndex()).getId_patisserie()).getNom()
+                        .get(table.getSelectionModel().getSelectedIndex()).getDisponiblité() + "\n"
+                + "Patisserie : " + pc.findById(prods.get(table.getSelectionModel().getSelectedIndex()).getId_patisserie()).getNom()
         );
 
     }
 
     public void afficher() {
         prods.clear();
-       
+
         try {
             for (Produit p : sv_p.displayAll()) {
                 System.out.println(p);
@@ -120,7 +147,7 @@ public class ProdclientController implements Initializable {
         search.setOnKeyPressed(e -> {
             if ((search.getText().equals(""))) {
                 afficher();
-            
+
             } else {
                 prods.clear();
                 String sql = "select * from produit where libellé like '%" + search.getText() + "%'";
@@ -128,10 +155,9 @@ public class ProdclientController implements Initializable {
                     pste = con.prepareStatement(sql);
                     rs = pste.executeQuery();
                     while (rs.next()) {
-                        prods.add(new Produit
-        (rs.getInt("id_produit"),rs.getString("libellé"), rs.getString("description"),
+                        prods.add(new Produit(rs.getInt("id_produit"), rs.getString("libellé"), rs.getString("description"),
                                 rs.getFloat("prix"), rs.getString("disponiblité"), rs.getInt("id_patisserie"),
-                                rs.getString("type_Produit"),rs.getString("image")));
+                                rs.getString("type_Produit"), rs.getString("image")));
                     }
                     table.setItems(prods);
                 } catch (SQLException ex) {
@@ -139,6 +165,14 @@ public class ProdclientController implements Initializable {
                 }
             }
         });
+    }
+
+    @FXML
+    private void Modifier_Comment(MouseEvent event) {
+    }
+
+    @FXML
+    private void Ajouter_Comment(ActionEvent event) {
     }
 
 }
