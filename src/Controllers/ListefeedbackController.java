@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Controllers;
 
+import static Controllers.LoginController.usernid;
+import static Controllers.ProdclientController.idprod;
 import Entities.FeedBack;
 import Services.CRUD_FeedBack;
 import java.net.URL;
@@ -34,8 +36,6 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -44,8 +44,6 @@ import javafx.scene.layout.AnchorPane;
  */
 public class ListefeedbackController implements Initializable {
 
-    @FXML
-    private AnchorPane id;
     @FXML
     private TableView<FeedBack> feedback;
     @FXML
@@ -71,22 +69,25 @@ public class ListefeedbackController implements Initializable {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         Datef.setText(dateFormat.format(date));
-        Afficher_Comment();
+        Afficher_Comment(idprod);
+
     }
 
-    private void Afficher_Comment() {
+    private void Afficher_Comment(int id) {
+
         try {
             //Client.setCellValueFactory(new PropertyValueFactory<>("id_client"));
-            
+
             Client.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, String> FeedBack) -> new SimpleStringProperty(FeedBack.getValue().getClient().getNom()));
             date.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, String> FeedBack) -> new SimpleStringProperty(FeedBack.getValue().getDate()));
             description.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, String> FeedBack) -> new SimpleStringProperty(FeedBack.getValue().getDescription()));
             id_feedback.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, Integer> FeedBack) -> new SimpleIntegerProperty(FeedBack.getValue().getId_feedback()).asObject());
-
             CRUD_FeedBack cf = new CRUD_FeedBack();
-
-            ObservableList<FeedBack> FeedBacks = FXCollections.observableArrayList((ArrayList<FeedBack>) cf.displayAllFeedBackP(1));
+            ObservableList<FeedBack> FeedBacks = FXCollections.observableArrayList((ArrayList<FeedBack>) cf.displayAllFeedBackProd(id));
             feedback.setItems(FeedBacks);
+            System.out.println("**********************************");
+            System.out.println(id);
+            System.out.println("**********************************");
         } catch (SQLException ex) {
             Logger.getLogger(ListefeedbackController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,10 +97,13 @@ public class ListefeedbackController implements Initializable {
     private void Ajouter_Comment(ActionEvent event) throws SQLException {
 
         CRUD_FeedBack cf = new CRUD_FeedBack();
-        FeedBack f = new FeedBack(1, 1, id_comment.getText(), Datef.getText());
-        cf.insertFeedBackP(f);
+        FeedBack f = new FeedBack(usernid, idprod, id_comment.getText(), Datef.getText());
+        cf.insertFeedBackProd(f);
         refresh();
-        Afficher_Comment();
+        System.out.println("**********************************");
+        System.out.println(idprod);
+        System.out.println("**********************************");
+        Afficher_Comment(idprod);
     }
 
     @FXML
@@ -143,6 +147,6 @@ public class ListefeedbackController implements Initializable {
                 System.out.println(modifier);
             }
         }
-        Afficher_Comment();
+        Afficher_Comment(idprod);
     }
-} 
+}

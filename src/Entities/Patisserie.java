@@ -42,6 +42,10 @@ public class Patisserie {
     public Patisserie(int ID) {
         this.ID = ID;
     }
+
+    public Patisserie(String nom) {
+        this.nom = nom;
+    }
    
  
 

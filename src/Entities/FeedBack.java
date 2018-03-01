@@ -5,9 +5,7 @@
  */
 package Entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
@@ -20,6 +18,7 @@ public class FeedBack {
     private String description;
     private Patisserie patisserie;
     private Client client;
+    private Produit produit;
     private int id_client;
     private int id_patisserie;
     private int id_produit;
@@ -44,11 +43,18 @@ public class FeedBack {
         this.patisserie = patisserie;
         this.client = client;
     }
-    public FeedBack(int id_client, int id_patisserie,String description,String Date) {
+    public FeedBack(int id_feedback,String Date, Produit produit, Client client,String description) {
+        this.id_feedback = id_feedback;
+        this.Date = Date;
+        this.description = description;
+        this.produit = produit;
+        this.client = client;
+    }
+    public FeedBack(int id_client, int id_produit,String description,String Date) {
         this.Date = Date;
         this.description = description;
         this.id_client = id_client;
-        this.id_patisserie = id_patisserie;
+        this.id_produit = id_produit;
     }
 
     public FeedBack(String Date, Patisserie patisserie,Client client, String description) {
@@ -56,6 +62,14 @@ public class FeedBack {
         this.description = description;
         this.client = client;
         this.patisserie = patisserie;
+    }
+
+    public Produit getProduit() {
+        return produit;
+    }
+
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
 
