@@ -98,7 +98,7 @@ public class CRUD_Reclamation {
         rs = ste.executeQuery(requete);
         List<Reclamation> list = new ArrayList<>();
         while (rs.next()) {
-            Reclamation r = new Reclamation(rs.getString("date_rec"), new Patisserie(rs.getInt("patisserie.id"), rs.getString("patisserie.nom")), new Client(rs.getInt("client.id"), rs.getString("client.nom")), rs.getString("content"));
+            Reclamation r = new Reclamation(rs.getString("date_rec"), new Patisserie(rs.getInt("patisserie.id"), rs.getString("patisserie.nom")), new Client(rs.getInt("client.id"), rs.getString("client.nom"), rs.getString("client.prenom")), rs.getString("content"));
             list.add(r);
         }
         return list;

@@ -66,6 +66,8 @@ public class ReclamationlisteController implements Initializable {
     private Label info;
     @FXML
     private TableView<Reclamation> TableReclamation;
+    @FXML
+    private Label prenomc;
 
     /**
      * Initializes the controller class.
@@ -74,7 +76,7 @@ public class ReclamationlisteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
-            CC.setCellValueFactory((TableColumn.CellDataFeatures<Reclamation, String> Reclamations) -> new SimpleStringProperty(Reclamations.getValue().getClient().getNom()));
+            CC.setCellValueFactory((TableColumn.CellDataFeatures<Reclamation, String> Reclamations) -> new SimpleStringProperty(Reclamations.getValue().getClient().getNom()+"   "+Reclamations.getValue().getClient().getPrenom()));
             CP.setCellValueFactory((TableColumn.CellDataFeatures<Reclamation, String> Reclamations) -> new SimpleStringProperty(Reclamations.getValue().getPatisserie().getNom()));
             CRUD_Reclamation CR = new CRUD_Reclamation();
             ObservableList<Reclamation> Reclamations = FXCollections.observableArrayList((ArrayList<Reclamation>) CR.displayAllFeedBack());
@@ -83,7 +85,6 @@ public class ReclamationlisteController implements Initializable {
             FilteredList<Reclamation> listeFiltre = new FilteredList<>(Reclamations, e -> true);
             txtc.textProperty().addListener((observableValue, oldValue, newValue) -> {
                 listeFiltre.setPredicate((Predicate<? super Reclamation>) candidat -> {
-
                     if (newValue == null || newValue.isEmpty()) {
                         return true;
                     }
@@ -102,7 +103,9 @@ public class ReclamationlisteController implements Initializable {
                 nomc.setText(String.valueOf(Reclamations
                         .get(TableReclamation.getSelectionModel().getSelectedIndex())
                         .getClient().getNom()));
-
+                prenomc.setText(String.valueOf(Reclamations
+                        .get(TableReclamation.getSelectionModel().getSelectedIndex())
+                        .getClient().getPrenom()));
                 nomp.setText(String.valueOf(Reclamations
                         .get(TableReclamation.getSelectionModel().getSelectedIndex())
                         .getPatisserie().getNom()));

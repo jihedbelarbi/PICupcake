@@ -41,6 +41,12 @@ public class Client {
         this.address = address;
     }
 
+    public Client(int id, String Nom, String prenom) {
+        this.id = id;
+        this.Nom = Nom;
+        this.prenom = prenom;
+    }
+
     public Client() {
     }
 

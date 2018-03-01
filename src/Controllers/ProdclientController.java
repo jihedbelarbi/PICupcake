@@ -237,7 +237,7 @@ public class ProdclientController implements Initializable {
         System.out.println(idprod);
         System.out.println("**********************************");
         Afficher_Comment(idprod);
-        
+        id_comment.setText("");
     }
 
     
