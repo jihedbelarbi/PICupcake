@@ -150,10 +150,12 @@ public class LoginController implements Initializable {
         ClientDAO ctDao = new ClientDAO();
         PatisserieDAO ptDao = new PatisserieDAO();
        String val = combobox.getValue();
-       
-      if(!(combobox.isPressed())){ msgbox("choisir utilisateur");}
-    
+           
         switch (val) {
+            case"":
+                msgbox("choisir utilisateur");
+                break;
+            
             case "Administrateur":
 
                 if ((user.equals("admin")) && (pswd.equals("admin"))) {
