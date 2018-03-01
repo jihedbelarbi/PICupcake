@@ -28,7 +28,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtc" layoutX="300.0" layoutY="56.0" prefHeight="31.0" prefWidth="245.0" promptText="Nom du Client" />
-                  <TableView fx:id="TableReclamation" layoutX="133.0" layoutY="182.0" prefHeight="228.0" prefWidth="483.0">
+                  <TableView fx:id="TableReclamation" layoutX="133.0" layoutY="182.0" prefHeight="380.0" prefWidth="483.0">
                      <columns>
                         <TableColumn fx:id="CC" prefWidth="221.60003662109375" text="Client" />
                         <TableColumn fx:id="CP" prefWidth="260.79998779296875" text="Patisserie" />
