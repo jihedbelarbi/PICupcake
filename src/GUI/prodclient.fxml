@@ -19,7 +19,7 @@
       </TableView>
       <AnchorPane fx:id="ancr" layoutX="257.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1048.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
-            <ImageView fx:id="imgP" fitHeight="354.0" fitWidth="263.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgP" fitHeight="232.0" fitWidth="263.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
             <TextArea fx:id="txtinf" layoutX="298.0" layoutY="14.0" prefHeight="232.0" prefWidth="558.0">
                <font>
                   <Font name="Forte" size="19.0" />
@@ -34,6 +34,7 @@
             </TableView>
             <TextArea fx:id="id_comment" layoutX="298.0" layoutY="271.0" prefHeight="99.0" prefWidth="558.0" promptText="Commentaire" />
             <Button fx:id="btn_ajout" layoutX="871.0" layoutY="288.0" mnemonicParsing="false" onAction="#Ajouter_Comment" text="Ajouter" />
+            <Button fx:id="fav" layoutX="21.0" layoutY="259.0" mnemonicParsing="false" onAction="#favadd" text="Ajouter au favoris" />
          </children>
       </AnchorPane>
       <Label layoutX="67.0" layoutY="23.0" text="Rechercher" />

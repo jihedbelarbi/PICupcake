@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Liste_favoritController">
+   <children>
+      <TableView fx:id="favorit" layoutX="79.0" layoutY="117.0" prefHeight="200.0" prefWidth="504.0">
+        <columns>
+          <TableColumn fx:id="lib" prefWidth="153.0" text="libellé" />
+          <TableColumn fx:id="descr" minWidth="0.0" prefWidth="242.0" text="description" />
+            <TableColumn fx:id="prix" prefWidth="108.0" text="prix" />
+        </columns>
+      </TableView>
+      <Button fx:id="supp" layoutX="531.0" layoutY="342.0" mnemonicParsing="false" onAction="#supprimer_favoris" text="Supprimer" />
+   </children>
+</AnchorPane>

@@ -34,7 +34,7 @@ public class ComptCController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        listMenu.getItems().addAll(" Mes infos", "  Mes favoris", " Mes abpnements", "Mes commandes");
+        listMenu.getItems().addAll(" Mes infos", "  Mes favoris", " Mes abonements","Mes suggestions", "Mes commandes","Mes reclamations");
         listMenu.getSelectionModel().select(0);
         con.loadAnchorPane(paneData, "infoclient.fxml"); //pane
         listMenu.requestFocus();
@@ -49,7 +49,20 @@ public class ComptCController implements Initializable {
                 con.loadAnchorPane(paneData, "infoclient.fxml");
             }
             break;
-
+          case 1: {
+                con.loadAnchorPane(paneData, "liste_favorit.fxml");
+            }
+            break;
+        case 5: {
+                con.loadAnchorPane(paneData, "ReclamationCListe.fxml");
+            }
+            break;
+        case 3: {
+                con.loadAnchorPane(paneData, "suggestionliste.fxml");
+            }
+            break;
+                  
+            
         }
 
     }

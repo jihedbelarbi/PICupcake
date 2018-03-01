@@ -8,9 +8,11 @@ package Controllers;
 import static Controllers.LoginController.usernid;
 import Entities.FeedBack;
 import Entities.Produit;
+import Entities.favoris;
 import Services.CRUD_FeedBack;
 import Services.PatisserieDAO;
 import Services.Service_produit;
+import Services.service_favoris;
 import Tools.DataSource;
 import Tools.config2;
 import java.io.File;
@@ -38,14 +40,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+//import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+//import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -98,6 +100,8 @@ public class ProdclientController implements Initializable {
     @FXML
     private Button btn_ajout;
   String dat;
+    @FXML
+    private Button fav;
     /**
      * Initializes the controller class.
      */
@@ -109,6 +113,7 @@ public class ProdclientController implements Initializable {
         
         afficher();
         ancr.setVisible(false);
+        
 
     }
 
@@ -137,6 +142,16 @@ public class ProdclientController implements Initializable {
                         .get(table.getSelectionModel().getSelectedIndex()).getDisponiblité() + "\n"
                 + "Patisserie : " + pc.findById(prods.get(table.getSelectionModel().getSelectedIndex()).getId_patisserie()).getNom()
         );
+       service_favoris sf = new service_favoris();
+        fav.setOnAction(event1 -> {
+           favoris f = new favoris(usernid,idprod);
+            try { 
+                sf.insertfavoris(f);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+        } );
 
     }
 
@@ -190,18 +205,18 @@ public class ProdclientController implements Initializable {
         TablePosition pos = feedback.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         if (pos.getColumn() == 0) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning Dialog");
-            alert.setHeaderText("Erreur");
-            alert.setContentText("Une erreur est survenu lors de la modification");
-            alert.showAndWait();
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Warning Dialog");
+//            alert.setHeaderText("Erreur");
+//            alert.setContentText("Une erreur est survenu lors de la modification");
+//            alert.showAndWait();
         }
         if (pos.getColumn() == 1) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning Dialog");
-            alert.setHeaderText("Erreur");
-            alert.setContentText("Une erreur est survenu lors de la modification");
-            alert.showAndWait();
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Warning Dialog");
+//            alert.setHeaderText("Erreur");
+//            alert.setContentText("Une erreur est survenu lors de la modification");
+//            alert.showAndWait();
         }
         // Item here is the table view type:
         FeedBack item = feedback.getItems().get(row);
@@ -209,20 +224,20 @@ public class ProdclientController implements Initializable {
 
         // this gives the value in the selected cell:
         String data = (String) col.getCellObservableValue(item).getValue();
-        TextInputDialog dialog = new TextInputDialog(data);
-        dialog.setTitle("Modifier");
-        dialog.setHeaderText("Fenetre de modification");
-        dialog.setContentText("Modifier la cellule:");
-        int Colo = pos.getColumn();
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            if (Colo == 2) {
-                modifier.setId_feedback(item.getId_feedback());
-                modifier.setDescription(result.get());
-                f.updateFeedBackP(modifier);
-                System.out.println(modifier);
-            }
-        }
+//        TextInputDialog dialog = new TextInputDialog(data);
+//        dialog.setTitle("Modifier");
+//        dialog.setHeaderText("Fenetre de modification");
+//        dialog.setContentText("Modifier la cellule:");
+//        int Colo = pos.getColumn();
+//        Optional<String> result = dialog.showAndWait();
+//        if (result.isPresent()){
+//            if (Colo == 2) {
+//                modifier.setId_feedback(item.getId_feedback());
+//                modifier.setDescription(result.get());
+//                f.updateFeedBackP(modifier);
+//                System.out.println(modifier);
+//            }
+//        }
         Afficher_Comment(idprod);
         
     }
@@ -260,6 +275,13 @@ public class ProdclientController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ListefeedbackController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void favadd(ActionEvent event) {
+        
+        
+        
     }
 
 
