@@ -18,22 +18,36 @@ public class Suggestion {
     private Patisserie patisserie;
     private Client client_emetteur;
     private Client client_recepteur;
+    private Produit produit;
 
     public Suggestion() {
     }
 
-    public Suggestion(Client client_emetteur, Client client_recepteur,Patisserie patisserie) {
+    public Suggestion(Client client_emetteur, Client client_recepteur,Produit produit) {
         this.client_emetteur = client_emetteur;
         this.client_recepteur = client_recepteur;
-        this.patisserie = patisserie;
+        this.produit = produit;
     }
-
+    public Suggestion(Client client_emetteur, Client client_recepteur,Produit produit,Patisserie patisserie) {
+        this.client_emetteur = client_emetteur;
+        this.client_recepteur = client_recepteur;
+        this.produit = produit;
+        this.patisserie= patisserie;
+    }
     public int getId_suggestion() {
         return id_suggestion;
     }
 
     public void setId_suggestion(int id_suggestion) {
         this.id_suggestion = id_suggestion;
+    }
+
+    public Produit getProduit() {
+        return produit;
+    }
+
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
     public int getId_boutique() {

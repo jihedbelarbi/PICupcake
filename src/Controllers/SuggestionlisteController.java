@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Controllers;
-
+import static Controllers.LoginController.usernid;
 import Entities.Suggestion;
 import Services.CRUD_Suggestion;
 import java.net.URL;
@@ -66,16 +66,23 @@ public class SuggestionlisteController implements Initializable {
     private Label emailc;
     @FXML
     private Label adressec;
-    @FXML
     private Label nomp;
     @FXML
     private Label Descp;
-    @FXML
     private Label emailp;
-    @FXML
     private Label adressp;
     @FXML
     private Button Acceder;
+    @FXML
+    private Label libellép;
+    @FXML
+    private Label prixp;
+    @FXML
+    private Label disp;
+    @FXML
+    private Label typep;
+    @FXML
+    private Label patp;
 
     /**
      * Initializes the controller class.
@@ -83,10 +90,10 @@ public class SuggestionlisteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            CC.setCellValueFactory((TableColumn.CellDataFeatures<Suggestion, String> Suggestion) -> new SimpleStringProperty(Suggestion.getValue().getClient_emetteur().getNom()));
-            CP.setCellValueFactory((TableColumn.CellDataFeatures<Suggestion, String> Suggestion) -> new SimpleStringProperty(Suggestion.getValue().getPatisserie().getNom()));
+            CC.setCellValueFactory((TableColumn.CellDataFeatures<Suggestion, String> Suggestion) -> new SimpleStringProperty(Suggestion.getValue().getClient_emetteur().getNom()+" "+Suggestion.getValue().getClient_emetteur().getPrenom()));
+            CP.setCellValueFactory((TableColumn.CellDataFeatures<Suggestion, String> Suggestion) -> new SimpleStringProperty(Suggestion.getValue().getProduit().getLibellé()));
             CRUD_Suggestion CS = new CRUD_Suggestion();
-            ObservableList<Suggestion> suggestions = FXCollections.observableArrayList((ArrayList<Suggestion>) CS.displaySuggestionP());
+            ObservableList<Suggestion> suggestions = FXCollections.observableArrayList((ArrayList<Suggestion>) CS.displaySuggestionProd(usernid));
             TableSuggestion.setItems(suggestions);
 //
 //            FilteredList<Suggestion> listeFiltre = new FilteredList<>(suggestions, e -> true);
@@ -124,21 +131,27 @@ TableSuggestion.setOnMouseClicked(event -> {
             .get(TableSuggestion.getSelectionModel().getSelectedIndex())
             .getClient_emetteur().getAddress());
     
-    nomp.setText(String.valueOf(suggestions
+    libellép.setText(String.valueOf(suggestions
             .get(TableSuggestion.getSelectionModel().getSelectedIndex())
-            .getPatisserie().getNom()));
+            .getProduit().getLibellé()));
     
     Descp.setText(suggestions
             .get(TableSuggestion.getSelectionModel().getSelectedIndex())
-            .getPatisserie().getEmail());
+            .getProduit().getDescription());
     
-    emailp.setText(suggestions
+    prixp.setText(String.valueOf(suggestions
             .get(TableSuggestion.getSelectionModel().getSelectedIndex())
-            .getPatisserie().getEmail());
+            .getProduit().getPrix()));
     
-    adressp.setText(suggestions
+    disp.setText(suggestions
             .get(TableSuggestion.getSelectionModel().getSelectedIndex())
-            .getPatisserie().getEmail());
+            .getProduit().getDisponiblité());
+    typep.setText(suggestions
+            .get(TableSuggestion.getSelectionModel().getSelectedIndex())
+            .getProduit().getType());
+    patp.setText(suggestions
+            .get(TableSuggestion.getSelectionModel().getSelectedIndex())
+            .getPatisserie().getNom());
 });
         } catch (SQLException ex) {
             Logger.getLogger(SuggestionlisteController.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,6 +7,7 @@ package Services;
 
 import Entities.Client;
 import Entities.Patisserie;
+import Entities.Produit;
 import Entities.Suggestion;
 import Tools.DataSource;
 import java.sql.Connection;
@@ -43,14 +44,14 @@ public class CRUD_Suggestion {
         pste.executeUpdate();
     }
 //    
-//    public void insertSuggestionProd(Suggestion s) throws SQLException { //PreparedStatement
-//        String requete = "insert into suggestion (id_client_emetteur,id_client_recepteur,id_produit) values (?,?,?)";
-//        pste = con.prepareStatement(requete);
-//        pste.setInt(1,s.getClient_emetteur().getId());
-//        pste.setInt(2,s.getClient_recepteur().getId());
-//        pste.setInt(3,s.getId_produit());
-//        pste.executeUpdate();
-//    }
+    public void insertSuggestionProd(Suggestion s) throws SQLException { //PreparedStatement
+        String requete = "insert into suggestion (id_client_emetteur,id_client_recepteur,id_produit) values (?,?,?)";
+        pste = con.prepareStatement(requete);
+        pste.setInt(1,s.getClient_emetteur().getId());
+        pste.setInt(2,s.getClient_recepteur().getId());
+        pste.setInt(3,s.getProduit().getId_produit());
+        pste.executeUpdate();
+    }
 //    
 //    public void insertSuggestionB(Suggestion s) throws SQLException { //PreparedStatement
 //        String requete = "insert into suggestion (id_client_emetteur,id_client_recepteur,id_boutique) values (?,?,?)";
@@ -92,40 +93,44 @@ public class CRUD_Suggestion {
 //    }
     
     
-    public List<Suggestion> displaySuggestionP () throws SQLException{
-        String requete ="SELECT * FROM suggestion \n" +
-                        "INNER JOIN client AS Client_Emetteur ON suggestion.id_client_emetteur = Client_Emetteur.id \n" +
-                        "INNER JOIN client AS Client_Recepteur ON suggestion.id_client_recepteur = Client_Recepteur.id \n" +
-                        "INNER JOIN patisserie ON suggestion.id_patisserie = patisserie.id \n" +
-                        "WHERE suggestion.id_patisserie IS NOT NULL ";
-        /*
-        SELECT *
-        FROM suggestion
-        INNER JOIN patisserie ON suggestion.id_patisserie = patisserie.id_patisserie
-        WHERE suggestion.id_patisserie IS NOT NULL;
-        */
-        ste=con.createStatement();
-        rs=ste.executeQuery(requete);
-        List<Suggestion> list=new ArrayList<>();
-        while (rs.next()){
-        Suggestion s = new Suggestion(new Client(rs.getString("Client_Emetteur.nom"),rs.getString("Client_Emetteur.prenom")),new Client(rs.getString("Client_Recepteur.nom")),new Patisserie( rs.getString("patisserie.nom")));
-        //Suggestion s = new Suggestion(new Client(new SimpleStringProperty(rs.getString("Client_Emetteur.Nom"))),new Client(new SimpleStringProperty(rs.getString("Client_Recepteur.Nom"))),new Patisserie(new SimpleStringProperty(rs.getString("patisserie.nom"))));
-         list.add(s);
-        }
-        return list;
-    }
-    
-//    public List<Suggestion> displaySuggestionProd () throws SQLException{
-//        String requete ="select * from suggestion where id_produit IS NOT NULL";
+//    public List<Suggestion> displaySuggestionP () throws SQLException{
+//        String requete ="SELECT * FROM suggestion \n" +
+//                        "INNER JOIN client AS Client_Emetteur ON suggestion.id_client_emetteur = Client_Emetteur.id \n" +
+//                        "INNER JOIN client AS Client_Recepteur ON suggestion.id_client_recepteur = Client_Recepteur.id \n" +
+//                        "INNER JOIN patisserie ON suggestion.id_patisserie = patisserie.id \n" +
+//                        "WHERE suggestion.id_patisserie IS NOT NULL AND suggestion. ";
+//        /*
+//        SELECT *
+//        FROM suggestion
+//        INNER JOIN patisserie ON suggestion.id_patisserie = patisserie.id_patisserie
+//        WHERE suggestion.id_patisserie IS NOT NULL;
+//        */
 //        ste=con.createStatement();
 //        rs=ste.executeQuery(requete);
 //        List<Suggestion> list=new ArrayList<>();
 //        while (rs.next()){
-//            Suggestion s = new Suggestion(rs.getInt("id_client_emetteur"),rs.getInt("id_client_recepteur"),rs.getInt("id_produit"));
-//            list.add(s);
+//        Suggestion s = new Suggestion(new Client(rs.getString("Client_Emetteur.nom"),rs.getString("Client_Emetteur.prenom")),new Client(rs.getString("Client_Recepteur.nom")),new Patisserie( rs.getString("patisserie.nom")));
+//        //Suggestion s = new Suggestion(new Client(new SimpleStringProperty(rs.getString("Client_Emetteur.Nom"))),new Client(new SimpleStringProperty(rs.getString("Client_Recepteur.Nom"))),new Patisserie(new SimpleStringProperty(rs.getString("patisserie.nom"))));
+//         list.add(s);
 //        }
 //        return list;
 //    }
+    public List<Suggestion> displaySuggestionProd (int id) throws SQLException{
+        String requete ="SELECT * FROM suggestion \n" +
+                        "INNER JOIN client AS Client_Emetteur ON suggestion.id_client_emetteur = Client_Emetteur.id \n" +
+                        "INNER JOIN client AS Client_Recepteur ON suggestion.id_client_recepteur = Client_Recepteur.id \n" +
+                        "INNER JOIN produit ON suggestion.id_produit = produit.id_produit \n" + 
+                        "INNER JOIN patisserie ON produit.id_patisserie = patisserie.id \n" +
+                        "WHERE suggestion.id_produit IS NOT NULL AND suggestion.id_client_recepteur = "+id;
+        ste=con.createStatement();
+        rs=ste.executeQuery(requete);
+        List<Suggestion> list=new ArrayList<>();
+        while (rs.next()){
+        Suggestion s = new Suggestion(new Client(rs.getString("Client_Emetteur.nom"),rs.getString("Client_Emetteur.prenom"),rs.getString("Client_Emetteur.email"),rs.getString("Client_Emetteur.adr")),new Client(rs.getString("Client_Recepteur.nom")),new Produit( rs.getString("produit.libellé"),rs.getString("produit.description"),rs.getFloat("produit.prix"),rs.getString("produit.disponiblité"),rs.getString("produit.type_Produit")),new Patisserie (rs.getString("patisserie.nom")));
+         list.add(s);
+        }
+        return list;
+    }
 //    
 //    public List<Suggestion> displaySuggestionB () throws SQLException{
 //        String requete ="select * from suggestion where id_boutique IS NOT NULL";
