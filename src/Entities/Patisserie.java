@@ -46,6 +46,12 @@ public class Patisserie {
     public Patisserie(String nom) {
         this.nom = nom;
     }
+
+    public Patisserie(int ID, String nom, String email) {
+        this.ID = ID;
+        this.nom = nom;
+        this.email = email;
+    }
    
  
 

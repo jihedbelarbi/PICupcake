@@ -7,6 +7,7 @@ package Controllers;
 
 import Entities.Reclamation;
 import Services.CRUD_Reclamation;
+import Services.SendMail;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,8 +20,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
@@ -68,18 +71,19 @@ public class ReclamationlisteController implements Initializable {
     private TableView<Reclamation> TableReclamation;
     @FXML
     private Label prenomc;
+    @FXML
+    private Button envmail;
 
     /**
      * Initializes the controller class.
      */
-    @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
-            CC.setCellValueFactory((TableColumn.CellDataFeatures<Reclamation, String> Reclamations) -> new SimpleStringProperty(Reclamations.getValue().getClient().getNom()+"   "+Reclamations.getValue().getClient().getPrenom()));
+            CC.setCellValueFactory((TableColumn.CellDataFeatures<Reclamation, String> Reclamations) -> new SimpleStringProperty(Reclamations.getValue().getClient().getNom() + "   " + Reclamations.getValue().getClient().getPrenom()));
             CP.setCellValueFactory((TableColumn.CellDataFeatures<Reclamation, String> Reclamations) -> new SimpleStringProperty(Reclamations.getValue().getPatisserie().getNom()));
             CRUD_Reclamation CR = new CRUD_Reclamation();
-            ObservableList<Reclamation> Reclamations = FXCollections.observableArrayList((ArrayList<Reclamation>) CR.displayAllFeedBack());
+            ObservableList<Reclamation> Reclamations = FXCollections.observableArrayList((ArrayList<Reclamation>) CR.displayAllReclamtion());
             TableReclamation.setItems(Reclamations);
 
             FilteredList<Reclamation> listeFiltre = new FilteredList<>(Reclamations, e -> true);
@@ -119,9 +123,32 @@ public class ReclamationlisteController implements Initializable {
                         .getContent());
 
             });
+            envmail.setOnAction(event1 -> {
+                try {
+                    SendMail sm = new SendMail();
+                    String mail = String.valueOf(Reclamations
+                            .get(TableReclamation.getSelectionModel().getSelectedIndex())
+                            .getPatisserie().getEmail());
+                    String contenu = "Reclamation : "+Reclamations
+                            .get(TableReclamation.getSelectionModel().getSelectedIndex())
+                            .getContent()+"\n"+"Nom du client : "+String.valueOf(Reclamations
+                        .get(TableReclamation.getSelectionModel().getSelectedIndex())
+                        .getClient().getNom())+" "+String.valueOf(Reclamations
+                        .get(TableReclamation.getSelectionModel().getSelectedIndex())
+                        .getClient().getPrenom())+"\n"+"Mail du Client :"+String.valueOf(Reclamations
+                        .get(TableReclamation.getSelectionModel().getSelectedIndex())
+                        .getClient().getMail());
+                    String subject = "Reclamation";
+                    sm.envoyer(mail,subject,contenu);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ReclamationlisteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
         } catch (SQLException ex) {
             Logger.getLogger(ReclamationlisteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
 }
