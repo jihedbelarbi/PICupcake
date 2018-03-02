@@ -19,15 +19,18 @@ public class Suggestion {
     private Client client_emetteur;
     private Client client_recepteur;
     private Produit produit;
+    private int id_client_emetteur;
+    private int id_client_recepteur;
 
     public Suggestion() {
     }
 
-    public Suggestion(Client client_emetteur, Client client_recepteur,Produit produit) {
-        this.client_emetteur = client_emetteur;
-        this.client_recepteur = client_recepteur;
-        this.produit = produit;
+    public Suggestion(int id_client_emetteur, int id_client_recepteur,int id_produit) {
+        this.id_produit = id_produit;
+        this.id_client_emetteur = id_client_emetteur;
+        this.id_client_recepteur = id_client_recepteur;
     }
+
     public Suggestion(Client client_emetteur, Client client_recepteur,Produit produit,Patisserie patisserie) {
         this.client_emetteur = client_emetteur;
         this.client_recepteur = client_recepteur;
@@ -44,6 +47,22 @@ public class Suggestion {
 
     public Produit getProduit() {
         return produit;
+    }
+
+    public int getId_client_emetteur() {
+        return id_client_emetteur;
+    }
+
+    public void setId_client_emetteur(int id_client_emetteur) {
+        this.id_client_emetteur = id_client_emetteur;
+    }
+
+    public int getId_client_recepteur() {
+        return id_client_recepteur;
+    }
+
+    public void setId_client_recepteur(int id_client_recepteur) {
+        this.id_client_recepteur = id_client_recepteur;
     }
 
     public void setProduit(Produit produit) {
@@ -65,6 +84,8 @@ public class Suggestion {
     public void setId_produit(int id_produit) {
         this.id_produit = id_produit;
     }
+
+
 
     public Patisserie getPatisserie() {
         return patisserie;

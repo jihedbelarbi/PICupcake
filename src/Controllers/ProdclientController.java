@@ -6,15 +6,18 @@
 package Controllers;
 
 import static Controllers.LoginController.usernid;
+import Entities.Client;
 import Entities.FeedBack;
 import Entities.Produit;
+import Entities.Suggestion;
 import Entities.favoris;
 import Services.CRUD_FeedBack;
+import Services.CRUD_Suggestion;
+import Services.ClientDAO;
 import Services.PatisserieDAO;
 import Services.Service_produit;
 import Services.service_favoris;
 import Tools.DataSource;
-import Tools.config2;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +32,6 @@ import static java.time.zone.ZoneRulesProvider.refresh;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,10 +41,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 //import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -53,7 +55,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 
 /**
  * FXML Controller class
@@ -76,8 +77,7 @@ public class ProdclientController implements Initializable {
     @FXML
     private TextField search;
     Connection con = DataSource.getInstance().getConnection();
-    
-    
+
     private Statement st;
     PreparedStatement pste;
     static int idprod;
@@ -100,22 +100,34 @@ public class ProdclientController implements Initializable {
     private TextArea id_comment;
     @FXML
     private Button btn_ajout;
-  String dat;
+    String dat;
     @FXML
     private Button fav;
+    @FXML
+    private ComboBox<String> Listeclient;
+    @FXML
+    private Button suggerer;
+    List<Client> CC;
+    ClientDAO c = new ClientDAO();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
-        dat=dateFormat.format(date);
-        
-        afficher();
-        ancr.setVisible(false);
-        
-
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = new Date();
+            dat = dateFormat.format(date);
+            afficher();
+            ancr.setVisible(false);
+            CC = c.readAll();
+            for (int i = 0; i < CC.size(); i++) {
+                Listeclient.getItems().add(CC.get(i).getNom());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -144,23 +156,37 @@ public class ProdclientController implements Initializable {
                         .get(table.getSelectionModel().getSelectedIndex()).getDisponiblité() + "\n"
                 + "Patisserie : " + pc.findById(prods.get(table.getSelectionModel().getSelectedIndex()).getId_patisserie()).getNom()
         );
-        
-        service_favoris sv1=new service_favoris();
-        List<favoris> listf=sv1.getAll(usernid);
+
+        service_favoris sv1 = new service_favoris();
+        List<favoris> listf = sv1.getAll(usernid);
 //        
 //        if(sv1.findByIDPC(usernid, idprod)!=null)      
 //               {fav.setVisible(false);
 //        } else { 
-            fav.setVisible(true);
-            fav.setOnAction(event1 -> {
-           favoris f = new favoris(usernid,idprod);
-            try { 
+        fav.setVisible(true);
+        fav.setOnAction(event1 -> {
+            favoris f = new favoris(usernid, idprod);
+            try {
                 sv1.insertfavoris(f);
             } catch (SQLException ex) {
                 Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
             }
-       
-        } ); 
+
+        });
+        suggerer.setOnAction(event2 -> {
+            CRUD_Suggestion cs = new CRUD_Suggestion();
+            String val1 = Listeclient.getValue();
+            System.out.println(val1);
+            System.out.println(usernid);
+            System.out.println(c.findByName(val1).getId());
+            System.out.println(idprod);
+            Suggestion s = new Suggestion(usernid, c.findByName(val1).getId(), idprod);
+            try {
+                cs.insertSuggestionProd(s);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
 
     }
 
@@ -248,12 +274,12 @@ public class ProdclientController implements Initializable {
 //            }
 //        }
         Afficher_Comment(idprod);
-        
+
     }
 
     @FXML
     private void Ajouter_Comment(ActionEvent event) throws SQLException {
-         CRUD_FeedBack cf = new CRUD_FeedBack();
+        CRUD_FeedBack cf = new CRUD_FeedBack();
         FeedBack f = new FeedBack(usernid, idprod, id_comment.getText(), dat);
         cf.insertFeedBackProd(f);
         refresh();
@@ -264,7 +290,6 @@ public class ProdclientController implements Initializable {
         id_comment.setText("");
     }
 
-    
     private void Afficher_Comment(int id) {
 
         try {
@@ -274,7 +299,7 @@ public class ProdclientController implements Initializable {
             date.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, String> FeedBack) -> new SimpleStringProperty(FeedBack.getValue().getDate()));
             description.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, String> FeedBack) -> new SimpleStringProperty(FeedBack.getValue().getDescription()));
             id_feedback.setCellValueFactory((TableColumn.CellDataFeatures<FeedBack, Integer> FeedBack) -> new SimpleIntegerProperty(FeedBack.getValue().getId_feedback()).asObject());
-           
+
             CRUD_FeedBack cf = new CRUD_FeedBack();
             ObservableList<FeedBack> FeedBacks = FXCollections.observableArrayList((ArrayList<FeedBack>) cf.displayAllFeedBackProd(id));
             feedback.setItems(FeedBacks);
@@ -288,10 +313,12 @@ public class ProdclientController implements Initializable {
 
     @FXML
     private void favadd(ActionEvent event) {
-        
-        
-        
+
     }
 
+    @FXML
+    private void suggerer(ActionEvent event) throws SQLException {
+
+    }
 
 }

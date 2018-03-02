@@ -45,11 +45,11 @@ public class CRUD_Suggestion {
     }
 //    
     public void insertSuggestionProd(Suggestion s) throws SQLException { //PreparedStatement
-        String requete = "insert into suggestion (id_client_emetteur,id_client_recepteur,id_produit) values (?,?,?)";
+        String requete = "insert into `suggestion` (`id_client_emetteur`, `id_client_recepteur`, `id_produit`) values (?,?,?)";
         pste = con.prepareStatement(requete);
-        pste.setInt(1,s.getClient_emetteur().getId());
-        pste.setInt(2,s.getClient_recepteur().getId());
-        pste.setInt(3,s.getProduit().getId_produit());
+        pste.setInt(1,s.getId_client_emetteur());
+        pste.setInt(2,s.getId_client_recepteur());
+        pste.setInt(3,s.getId_produit());
         pste.executeUpdate();
     }
 //    
