@@ -29,7 +29,7 @@ public class EmailController {
         username = "cupcake3a11@gmail.com";
         password = "cupcake2018";
         from = "cupcake3a11@gmail.com";
-        host = "Smtp.gmail.com";
+        host = "smtp.gmail.com";
         reciever = "imen.zoughlami@esprit.tn";
         subj = "HEllo";
         con = "Bienvenue a Cupcake ";
