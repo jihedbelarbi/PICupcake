@@ -9,9 +9,11 @@ import static Controllers.LoginController.usernid;
 import Entities.Client;
 import Entities.FeedBack;
 import Entities.Produit;
+import Entities.Rate;
 import Entities.Suggestion;
 import Entities.favoris;
 import Services.CRUD_FeedBack;
+import Services.CRUD_Rate;
 import Services.CRUD_Suggestion;
 import Services.ClientDAO;
 import Services.PatisserieDAO;
@@ -45,6 +47,8 @@ import javafx.fxml.Initializable;
 //import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -109,6 +113,20 @@ public class ProdclientController implements Initializable {
     private Button suggerer;
     List<Client> CC;
     ClientDAO c = new ClientDAO();
+    @FXML
+    private Slider rateslide = new Slider();
+    ;
+    @FXML
+    private Button btn_rate;
+    @FXML
+    private TextField rate;
+    @FXML
+    private Label Rating;
+    @FXML
+    private Label ratenbr;
+    @FXML
+    private Label ratetotal;
+    CRUD_Rate r = new CRUD_Rate();
 
     /**
      * Initializes the controller class.
@@ -125,6 +143,7 @@ public class ProdclientController implements Initializable {
             for (int i = 0; i < CC.size(); i++) {
                 Listeclient.getItems().add(CC.get(i).getNom());
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -156,7 +175,32 @@ public class ProdclientController implements Initializable {
                         .get(table.getSelectionModel().getSelectedIndex()).getDisponiblité() + "\n"
                 + "Patisserie : " + pc.findById(prods.get(table.getSelectionModel().getSelectedIndex()).getId_patisserie()).getNom()
         );
+        /*********************************************/
+        rate.setText("Rate : " + String.valueOf(r.findById(idprod).getRate()) + " Nombre : " + String.valueOf(r.findById(idprod).getNbre_rate()));
+        ratetotal.setText("Rate : " + String.valueOf(r.findById(idprod).getRate()));
+        ratenbr.setText("Nombre : " + String.valueOf(r.findById(idprod).getNbre_rate()));
+        
+        rate.setText(String.valueOf(r.findById(idprod).getRate()));
+        Rating.setText(String.valueOf(rateslide.getValue()));
+        rateslide.setOnMouseClicked(eventc ->{
+            try {
+                Rating.setText(String.valueOf(rateslide.getValue()));
+                rate.setText(String.valueOf((r.findById(idprod).getRate() + rateslide.getValue()) / 2));
+            } catch (SQLException ex) {
+                Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
+        });
+        btn_rate.setOnAction(eventr ->{
+            try {
+                int nbr = (r.findById(idprod).getNbre_rate()) + 1;
+                Rate ra = new Rate(((r.findById(idprod).getRate() + rateslide.getValue()) / 2), nbr, idprod);
+                r.updateRateP(ra);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        /*********************************************/
         service_favoris sv1 = new service_favoris();
         List<favoris> listf = sv1.getAll(usernid);
 //        
@@ -319,6 +363,16 @@ public class ProdclientController implements Initializable {
     @FXML
     private void suggerer(ActionEvent event) throws SQLException {
 
+    }
+
+    @FXML
+    private void Ratescroll(MouseEvent event) throws SQLException {
+        
+    }
+
+    @FXML
+    private void RatingButton(ActionEvent event) throws SQLException {
+       
     }
 
 }

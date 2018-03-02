@@ -86,7 +86,7 @@ public class RecettesController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {     
         try {
             afficher();
             ancr.setVisible(false);

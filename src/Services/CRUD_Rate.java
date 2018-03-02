@@ -5,7 +5,6 @@
  */
 package Services;
 
-import Entities.Patisserie;
 import Entities.Rate;
 import Tools.DataSource;
 import java.sql.Connection;
@@ -34,26 +33,26 @@ public class CRUD_Rate {
     }
 
     public void insertRateP(Rate r) throws SQLException { //PreparedStatement
-        String requete = "insert into rate (nbre_rate,rate,id_patisserie) values (?,?,?)";
+        String requete = "insert into rate (nbre_rate,rate,id_produit) values (?,?,?)";
         pste = con.prepareStatement(requete);
         pste.setInt(1, r.getNbre_rate());
         pste.setDouble(2, r.getRate());
-        pste.setInt(3, r.getId_patisserie());
+        pste.setInt(3, r.getId_produit());
         pste.executeUpdate();
     }
 
     public void updateRateP(Rate r) throws SQLException {
-        String requete = "UPDATE rate SET `rate`.`rate`=?,`rate`.`nbre_rate`=?  WHERE `rate`.`id_patisserie`=? ";
+        String requete = "UPDATE rate SET `rate`.`rate`=?,`rate`.`nbre_rate`=?  WHERE `rate`.`id_produit`=? ";
         pste = con.prepareStatement(requete);
         pste.setDouble(1, r.getRate());
         pste.setInt(2, r.getNbre_rate());
-        pste.setInt(3, 1);
+        pste.setInt(3, r.getId_produit());
         pste.executeUpdate();
     }
 
     public Rate findById(int i) throws SQLException {
         Rate r = null;
-        String requete = "select * from rate where id_patisserie=?";
+        String requete = "select * from rate where id_produit=?";
         try {
             PreparedStatement pste = con.prepareStatement(requete);
             pste.setInt(1, i);

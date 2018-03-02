@@ -65,6 +65,7 @@ public class config2 {
     public void loadAnchorPane(AnchorPane ap, String a){
         try {
             AnchorPane p = FXMLLoader.load(getClass().getResource("/GUI/"+a));
+
             ap.getChildren().setAll(p);
         } catch (IOException ex) {System.out.println(ex.getMessage());
         }   

@@ -15,23 +15,23 @@ public class Rate {
     private int id_rate;
     private double rate;
     private int nbre_rate;
-    private int id_patisserie;
+    private int id_produit;
 
-    public Rate(int id_rate, double rate, int nbre_rate, int id_patisserie) {
+    public Rate(int id_rate, double rate, int nbre_rate, int id_produit) {
         this.id_rate = id_rate;
         this.rate = rate;
         this.nbre_rate = nbre_rate;
-        this.id_patisserie = id_patisserie;
+        this.id_produit = id_produit;
     }
 
     public int getId_rate() {
         return id_rate;
     }
 
-    public Rate(double rate,int nbre_rate,int id_patisserie) {
+    public Rate(double rate,int nbre_rate,int id_produit) {
         this.rate = rate;
         this.nbre_rate = nbre_rate;
-        this.id_patisserie = id_patisserie;
+        this.id_produit = id_produit;
     }
     public Rate(int id_rate,double rate,int nbre_rate ) {
         this.rate = rate;
@@ -60,12 +60,12 @@ public class Rate {
         this.nbre_rate = nbre_rate;
     }
 
-    public int getId_patisserie() {
-        return id_patisserie;
+    public int getId_produit() {
+        return id_produit;
     }
 
-    public void setId_patisserie(int id_patisserie) {
-        this.id_patisserie = id_patisserie;
+    public void setId_produit(int id_produit) {
+        this.id_produit = id_produit;
     }
 
 
@@ -75,7 +75,7 @@ public class Rate {
         hash = 11 * hash + this.id_rate;
         hash = 11 * hash + (int) (Double.doubleToLongBits(this.rate) ^ (Double.doubleToLongBits(this.rate) >>> 32));
         hash = 11 * hash + this.nbre_rate;
-        hash = 11 * hash + Objects.hashCode(this.id_patisserie);
+        hash = 11 * hash + Objects.hashCode(this.id_produit);
         return hash;
     }
 
@@ -100,7 +100,7 @@ public class Rate {
         if (this.nbre_rate != other.nbre_rate) {
             return false;
         }
-        if (!Objects.equals(this.id_patisserie, other.id_patisserie)) {
+        if (!Objects.equals(this.id_produit, other.id_produit)) {
             return false;
         }
         return true;
@@ -111,7 +111,7 @@ public class Rate {
 
     @Override
     public String toString() {
-        return "Rate{" + "id_rate=" + id_rate + ", rate=" + rate + ", nbre_rate=" + nbre_rate + ", id_patisserie=" + id_patisserie + '}';
+        return "Rate{" + "id_rate=" + id_rate + ", rate=" + rate + ", nbre_rate=" + nbre_rate + ", id_produit=" + id_produit + '}';
     }
     
     

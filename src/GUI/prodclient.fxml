@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -38,6 +39,12 @@
             <Button fx:id="fav" layoutX="21.0" layoutY="259.0" mnemonicParsing="false" onAction="#favadd" text="Ajouter au favoris" />
             <ComboBox fx:id="Listeclient" layoutX="21.0" layoutY="300.0" prefWidth="150.0" promptText="Liste des client" />
             <Button fx:id="suggerer" layoutX="179.0" layoutY="300.0" mnemonicParsing="false" onAction="#suggerer" text="Suggerer" />
+            <Slider fx:id="rateslide" blockIncrement="1.0" layoutX="24.0" layoutY="449.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" onMouseClicked="#Ratescroll" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            <Button fx:id="btn_rate" layoutX="75.0" layoutY="497.0" mnemonicParsing="false" onAction="#RatingButton" text="rate" />
+            <TextField fx:id="rate" editable="false" layoutX="20.0" layoutY="370.0" />
+            <Label fx:id="Rating" layoutX="169.0" layoutY="488.0" prefHeight="18.0" prefWidth="102.0" />
+            <Label fx:id="ratenbr" layoutX="169.0" layoutY="468.0" prefHeight="18.0" prefWidth="102.0" />
+            <Label fx:id="ratetotal" layoutX="169.0" layoutY="449.0" prefHeight="18.0" prefWidth="102.0" />
          </children>
       </AnchorPane>
       <Label layoutX="67.0" layoutY="23.0" text="Rechercher" />

@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -91,12 +92,16 @@ public class AllPatissController implements Initializable {
                 img.setFitWidth(300);
                 img.setFitHeight(150);
                 grid.add(img, 0, i);
+                
 
-                text = new Label("  "+list.get(i).getNom()+"\n"+list.get(i).getEmail());
+                text = new Label("\n  "+list.get(i).getNom()+"\n"+list.get(i).getEmail()+"\n");
+                
                 text.setFont(new Font("System", 17));
                 text.setPrefWidth(300);
                 text.setAlignment(Pos.TOP_LEFT);
                 grid.add(text, 1, i);
+
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(AllPatissController.class.getName()).log(Level.SEVERE, null, ex);

@@ -27,7 +27,6 @@ public class Cupcake extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("/GUI/login.fxml")); //"/GUI/retourAFrC.fxml"
             Scene scene = new Scene(root);
             stage.setScene(scene);
-
             stage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

@@ -49,9 +49,9 @@ public class RateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            rate.setText("Rate : "+String.valueOf(r.findById(1).getRate())+" Nombre"+String.valueOf(r.findById(1).getNbre_rate()));
+            rate.setText("Rate : "+String.valueOf(r.findById(1).getRate())+" Nombre : "+String.valueOf(r.findById(1).getNbre_rate()));
             ratetotal.setText("Rate : "+String.valueOf(r.findById(1).getRate()));
-            ratenbr.setText("Nombre"+String.valueOf(r.findById(1).getNbre_rate())); 
+            ratenbr.setText("Nombre : "+String.valueOf(r.findById(1).getNbre_rate())); 
         } catch (SQLException ex) {
             Logger.getLogger(RateController.class.getName()).log(Level.SEVERE, null, ex);
         }
