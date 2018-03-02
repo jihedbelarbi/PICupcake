@@ -14,9 +14,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="892.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReclamationlisteController">
    <children>
-      <Label fx:id="lab1" layoutX="14.0" layoutY="3.0" prefHeight="50.0" prefWidth="350.0" text="Liste des Reclamations" textFill="#54e8cc">
+      <Label fx:id="lab1" layoutX="14.0" layoutY="3.0" prefHeight="50.0" prefWidth="350.0" text="Liste des Reclamations" textFill="#cd3869">
          <font>
-            <Font size="33.0" />
+            <Font name="Forte" size="33.0" />
          </font>
       </Label>
       <SplitPane fx:id="spp" dividerPositions="0.5609157808667212" layoutY="50.0" prefHeight="596.0" prefWidth="1215.0">
@@ -29,10 +29,10 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtc" layoutX="300.0" layoutY="56.0" prefHeight="31.0" prefWidth="245.0" promptText="Nom du Client" />
-                  <TableView fx:id="TableReclamation" layoutX="133.0" layoutY="182.0" prefHeight="380.0" prefWidth="483.0">
+                  <TableView fx:id="TableReclamation" layoutX="86.0" layoutY="182.0" prefHeight="266.0" prefWidth="530.0" stylesheets="@../css/Metro-UI.css">
                      <columns>
-                        <TableColumn fx:id="CC" prefWidth="221.60003662109375" text="Client" />
-                        <TableColumn fx:id="CP" prefWidth="260.79998779296875" text="Patisserie" />
+                        <TableColumn fx:id="CC" prefWidth="268.0" text="Client" />
+                        <TableColumn fx:id="CP" prefWidth="257.0" text="Patisserie" />
                      </columns>
                   </TableView>
                </children>
