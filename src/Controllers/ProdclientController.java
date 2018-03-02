@@ -34,6 +34,7 @@ import static java.time.zone.ZoneRulesProvider.refresh;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 //import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -54,11 +56,14 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 //import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -196,6 +201,7 @@ public class ProdclientController implements Initializable {
                 int nbr = (r.findById(idprod).getNbre_rate()) + 1;
                 Rate ra = new Rate(((r.findById(idprod).getRate() + rateslide.getValue()) / 2), nbr, idprod);
                 r.updateRateP(ra);
+                Notifications.create().title("Rate").text("Rate Ajouter").darkStyle().hideAfter(Duration.seconds(30)).showConfirm();
             } catch (SQLException ex) {
                 Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -227,6 +233,7 @@ public class ProdclientController implements Initializable {
             Suggestion s = new Suggestion(usernid, c.findByName(val1).getId(), idprod);
             try {
                 cs.insertSuggestionProd(s);
+                Notifications.create().title("Suggestion").text("Suggestion envoyer").darkStyle().hideAfter(Duration.seconds(30)).showConfirm();
             } catch (SQLException ex) {
                 Logger.getLogger(ProdclientController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -284,18 +291,18 @@ public class ProdclientController implements Initializable {
         TablePosition pos = feedback.getSelectionModel().getSelectedCells().get(0);
         int row = pos.getRow();
         if (pos.getColumn() == 0) {
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setTitle("Warning Dialog");
-//            alert.setHeaderText("Erreur");
-//            alert.setContentText("Une erreur est survenu lors de la modification");
-//            alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Erreur");
+            alert.setContentText("Une erreur est survenu lors de la modification");
+            alert.showAndWait();
         }
         if (pos.getColumn() == 1) {
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setTitle("Warning Dialog");
-//            alert.setHeaderText("Erreur");
-//            alert.setContentText("Une erreur est survenu lors de la modification");
-//            alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Erreur");
+            alert.setContentText("Une erreur est survenu lors de la modification");
+            alert.showAndWait();
         }
         // Item here is the table view type:
         FeedBack item = feedback.getItems().get(row);
@@ -303,20 +310,20 @@ public class ProdclientController implements Initializable {
 
         // this gives the value in the selected cell:
         String data = (String) col.getCellObservableValue(item).getValue();
-//        TextInputDialog dialog = new TextInputDialog(data);
-//        dialog.setTitle("Modifier");
-//        dialog.setHeaderText("Fenetre de modification");
-//        dialog.setContentText("Modifier la cellule:");
-//        int Colo = pos.getColumn();
-//        Optional<String> result = dialog.showAndWait();
-//        if (result.isPresent()){
-//            if (Colo == 2) {
-//                modifier.setId_feedback(item.getId_feedback());
-//                modifier.setDescription(result.get());
-//                f.updateFeedBackP(modifier);
-//                System.out.println(modifier);
-//            }
-//        }
+        TextInputDialog dialog = new TextInputDialog(data);
+        dialog.setTitle("Modifier");
+        dialog.setHeaderText("Fenetre de modification");
+        dialog.setContentText("Modifier la cellule:");
+        int Colo = pos.getColumn();
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            if (Colo == 2) {
+                modifier.setId_feedback(item.getId_feedback());
+                modifier.setDescription(result.get());
+                f.updateFeedBackP(modifier);
+                System.out.println(modifier);
+            }
+        }
         Afficher_Comment(idprod);
 
     }
@@ -326,6 +333,7 @@ public class ProdclientController implements Initializable {
         CRUD_FeedBack cf = new CRUD_FeedBack();
         FeedBack f = new FeedBack(usernid, idprod, id_comment.getText(), dat);
         cf.insertFeedBackProd(f);
+        Notifications.create().title("FeedBack").text("FeedBack envoyer").darkStyle().hideAfter(Duration.seconds(30)).showConfirm();
         refresh();
         System.out.println("**********************************");
         System.out.println(idprod);
