@@ -36,8 +36,8 @@
             <TextArea fx:id="id_comment" layoutX="298.0" layoutY="271.0" prefHeight="99.0" prefWidth="558.0" promptText="Commentaire" />
             <Button fx:id="btn_ajout" layoutX="871.0" layoutY="288.0" mnemonicParsing="false" onAction="#Ajouter_Comment" text="Ajouter" />
             <Button fx:id="fav" layoutX="21.0" layoutY="259.0" mnemonicParsing="false" onAction="#favadd" text="Ajouter au favoris" />
-            <ComboBox layoutX="21.0" layoutY="300.0" prefWidth="150.0" promptText="Liste des client" />
-            <Button layoutX="179.0" layoutY="300.0" mnemonicParsing="false" text="Suggerer" />
+            <ComboBox fx:id="Listeclient" layoutX="21.0" layoutY="300.0" prefWidth="150.0" promptText="Liste des client" />
+            <Button fx:id="suggerer" layoutX="179.0" layoutY="300.0" mnemonicParsing="false" onAction="#suggerer" text="Suggerer" />
          </children>
       </AnchorPane>
       <Label layoutX="67.0" layoutY="23.0" text="Rechercher" />

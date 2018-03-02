@@ -5,7 +5,7 @@
  */
 package Services;
 
-import Tools.cnx_Jihed;
+import Tools.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class SendMail {
 
-    public Connection cnx = cnx_Jihed.getInstance().getConnection();
+    public Connection cnx = DataSource.getInstance().getConnection();
     public Statement st;
 
     public SendMail() throws SQLException {
