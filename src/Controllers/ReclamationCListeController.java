@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Controllers;
-
+import static Controllers.LoginController.usernid;
 import Entities.Reclamation;
 import Services.CRUD_Reclamation;
 import java.net.URL;
@@ -75,7 +75,7 @@ public class ReclamationCListeController implements Initializable {
             CC.setCellValueFactory((TableColumn.CellDataFeatures<Reclamation, String> Reclamations) -> new SimpleStringProperty(Reclamations.getValue().getClient().getNom()+"   "+Reclamations.getValue().getClient().getPrenom()));
             CP.setCellValueFactory((TableColumn.CellDataFeatures<Reclamation, String> Reclamations) -> new SimpleStringProperty(Reclamations.getValue().getPatisserie().getNom()));
             CRUD_Reclamation CR = new CRUD_Reclamation();
-            ObservableList<Reclamation> Reclamations = FXCollections.observableArrayList((ArrayList<Reclamation>) CR.displayAllFeedBack());
+            ObservableList<Reclamation> Reclamations = FXCollections.observableArrayList((ArrayList<Reclamation>) CR.displayAllReclamtionC(usernid));
             TableReclamation.setItems(Reclamations);
             
             TableReclamation.setOnMouseClicked(event -> {

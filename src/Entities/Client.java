@@ -48,6 +48,13 @@ public class Client {
         this.address = address;
     }
 
+    public Client(int id, String Nom, String prenom, String mail) {
+        this.id = id;
+        this.Nom = Nom;
+        this.prenom = prenom;
+        this.mail = mail;
+    }
+    
     public Client(int id, String Nom, String prenom) {
         this.id = id;
         this.Nom = Nom;

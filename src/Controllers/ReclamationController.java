@@ -30,6 +30,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import static Controllers.LoginController.usernid;
 import Services.ClientDAO;
+import Services.SendMail;
 
 /**
  * FXML Controller class
@@ -97,8 +98,8 @@ public class ReclamationController implements Initializable {
 
                 Reclamation r = new Reclamation(usernid, p.findByName(val1).getID(), reclmationtxt.getText(), Date.getText());
                 cr.insertReclamation(r);
-                //sm.envoyer("jihed.belarbi@gmail.com");
-                //sm.envoiMultiple(cboNiveau.getSelectionModel().getSelectedItem().toString());
+                SendMail sm = new SendMail();
+                sm.envoyer(c.findByID(usernid).getMail(),"Reclamation","Votre reclamation est envoyer avec succes");
 //                Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //                alert.setTitle("Ajout reclamation");
 //                alert.setHeaderText("Information sur l'ajout");
