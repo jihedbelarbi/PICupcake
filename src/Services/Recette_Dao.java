@@ -150,6 +150,19 @@ public class Recette_Dao {
         }  
            return p;    }
 
+    public void deleteR(int id) throws SQLException {
+                PreparedStatement pst;      
+            String req="DELETE FROM recette WHERE  id=?" ;
+            pst=connection.prepareStatement(req);
+               pst.setInt(1,id);
+        try {
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 
 }
 

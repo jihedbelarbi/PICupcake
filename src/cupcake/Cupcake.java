@@ -22,7 +22,7 @@ public class Cupcake extends Application {
     public void start(Stage stage) throws Exception {
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/ac.fxml")); //"/GUI/retourAFrC.fxml"
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/cp.fxml")); //"/GUI/retourAFrC.fxml"
             Scene scene = new Scene(root);
             stage.setScene(scene);
 
@@ -30,7 +30,9 @@ public class Cupcake extends Application {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+        
     }
+    
 
     /**
      * @param args the command line arguments
