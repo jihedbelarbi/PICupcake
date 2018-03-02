@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,11 +12,7 @@
             <Image url="@../img/Pattern-White-Sand-background-patterns-pattern-wallpapers-1600x1200.jpg" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="250.0" prefHeight="734.0" prefWidth="1150.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <content>
-          <AnchorPane fx:id="paneData" prefHeight="1000.0" prefWidth="1146.0" style="-fx-background-color: white;" />
-        </content>
-      </ScrollPane>
-      <ListView fx:id="listMenu" editable="true" fixedCellSize="0.0" minHeight="500.0" minWidth="200.0" onMouseClicked="#aksiKlikListMenu" prefHeight="503.0" prefWidth="254.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" stylesheets="@../css/listvcl_1.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="108.0" />
+    <AnchorPane fx:id="paneData" layoutX="284.0" prefHeight="1000.0" prefWidth="1116.0" style="-fx-background-color: transparent;" />
+      <ListView fx:id="listMenu" editable="true" fixedCellSize="0.0" minHeight="500.0" minWidth="200.0" onMouseClicked="#aksiKlikListMenu" prefHeight="503.0" prefWidth="282.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" stylesheets="@../css/listvcl_1.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="108.0" />
    </children>
 </AnchorPane>

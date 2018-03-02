@@ -106,7 +106,7 @@ public class NewRecController implements Initializable {
             try {
                 bufferedImage = ImageIO.read(file);
                 image = SwingFXUtils.toFXImage(bufferedImage, null);
-                fileWritten = new File("C:\\Users\\user16\\Documents\\GitHub\\Cupcake\\src\\img\\" + file.getName());
+                fileWritten = new File("C:\\Users\\user16\\Documents\\GitHub\\PICupcake\\src\\img\\" + file.getName());
                 imagePath = fileWritten.getPath();
                 imageName = fileWritten.getName();
                 img1.setImage(image);

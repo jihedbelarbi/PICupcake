@@ -11,18 +11,18 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="892.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SuggestionlisteController">
+<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="892.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SuggestionlisteController">
    <children>
-      <Label fx:id="lab1" layoutX="14.0" layoutY="3.0" prefHeight="50.0" prefWidth="350.0" text="Liste des Suggestions" textFill="#54e8cc">
+      <Label fx:id="lab1" layoutX="14.0" layoutY="3.0" prefHeight="50.0" prefWidth="350.0" text="Liste des Suggestions" textFill="#e5558a">
          <font>
-            <Font size="33.0" />
+            <Font name="Forte" size="33.0" />
          </font>
       </Label>
-      <SplitPane fx:id="spp" dividerPositions="0.5609157808667212" layoutY="50.0" prefHeight="596.0" prefWidth="1215.0">
+      <SplitPane fx:id="spp" dividerPositions="0.5609157808667212" layoutY="50.0" prefHeight="596.0" prefWidth="1215.0" style="-fx-background-color: transparent;">
         <items>
-          <AnchorPane fx:id="ap1" minHeight="0.0" minWidth="0.0" prefHeight="554.0" prefWidth="251.0" style="-fx-background-color: white;">
+          <AnchorPane fx:id="ap1" minHeight="0.0" minWidth="0.0" prefHeight="554.0" prefWidth="251.0" style="-fx-background-color: transparent;">
                <children>
-                  <TableView fx:id="TableSuggestion" layoutX="75.0" layoutY="76.0" prefHeight="446.0" prefWidth="541.0">
+                  <TableView fx:id="TableSuggestion" layoutX="75.0" layoutY="76.0" prefHeight="292.0" prefWidth="541.0" stylesheets="@../css/Metro-UI.css">
                      <columns>
                         <TableColumn fx:id="CC" prefWidth="221.60003662109375" text="Client" />
                         <TableColumn fx:id="CP" prefWidth="318.3999877929688" text="Patisserie" />
@@ -30,7 +30,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="ap2" minHeight="0.0" minWidth="0.0" prefHeight="592.0" prefWidth="506.0" style="-fx-background-color: white;">
+          <AnchorPane fx:id="ap2" minHeight="0.0" minWidth="0.0" prefHeight="592.0" prefWidth="506.0" style="-fx-background-color: transparent;">
                <children>
                   <GridPane fx:id="gridC" layoutX="78.0" layoutY="69.0" prefHeight="154.0" prefWidth="318.0">
                     <columnConstraints>

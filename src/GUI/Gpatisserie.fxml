@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="606.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GpatisserieController">
    <children>
-      <SplitPane fx:id="spp" dividerPositions="0.5" layoutY="52.0" prefHeight="594.0" prefWidth="1000.0" style="-fx-border-color: white;">
+      <SplitPane fx:id="spp" dividerPositions="0.5240963855421686" layoutY="27.0" prefHeight="619.0" prefWidth="1000.0" style="-fx-border-color: white;">
         <items>
           <AnchorPane fx:id="ap1" minHeight="0.0" minWidth="0.0" prefHeight="554.0" prefWidth="251.0" style="-fx-background-color: white;">
                <children>
@@ -24,10 +24,10 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtp" layoutX="266.0" layoutY="56.0" prefHeight="31.0" prefWidth="212.0" promptText="entrer login" />
-                  <TableView fx:id="tbvp" layoutX="95.0" layoutY="182.0" prefHeight="226.0" prefWidth="342.0">
+                  <TableView fx:id="tbvp" layoutX="11.0" layoutY="182.0" prefHeight="213.0" prefWidth="491.0">
                      <columns>
-                        <TableColumn fx:id="log" prefWidth="170.0" text="Login" />
-                        <TableColumn fx:id="nom" prefWidth="168.0" text="Nom" />
+                        <TableColumn fx:id="log" prefWidth="243.0" text="Login" />
+                        <TableColumn fx:id="nom" prefWidth="235.0" text="Nom" />
                      </columns>
                   </TableView>
                </children>

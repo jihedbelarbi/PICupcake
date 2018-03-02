@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GclientController">
    <children>
-      <SplitPane fx:id="spp" dividerPositions="0.5" layoutY="50.0" prefHeight="596.0" prefWidth="1000.0" style="-fx-border-color: white;">
+      <SplitPane fx:id="spp" dividerPositions="0.5371485943775101" layoutY="50.0" prefHeight="596.0" prefWidth="1000.0" style="-fx-border-color: white;">
         <items>
           <AnchorPane fx:id="ap1" minHeight="0.0" minWidth="0.0" prefHeight="554.0" prefWidth="251.0" style="-fx-background-color: white;">
                <children>
@@ -25,12 +25,12 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtc" layoutX="214.0" layoutY="57.0" prefHeight="31.0" prefWidth="245.0" promptText="entrer le login" />
-                  <TableView fx:id="tbvc" layoutX="22.0" layoutY="166.0" prefHeight="228.0" prefWidth="452.0">
+                  <TableView fx:id="tbvc" layoutX="22.0" layoutY="166.0" prefHeight="228.0" prefWidth="493.0">
                      <columns>
-                        <TableColumn fx:id="log" prefWidth="105.0" text="Login" />
-                        <TableColumn fx:id="nom" prefWidth="91.0" text="Nom" />
-                        <TableColumn fx:id="prenom" prefWidth="114.0" text="Prenom" />
-                        <TableColumn fx:id="adr" minWidth="4.0" prefWidth="139.0" text="Adresse" />
+                        <TableColumn fx:id="log" prefWidth="121.0" text="Login" />
+                        <TableColumn fx:id="nom" prefWidth="101.0" text="Nom" />
+                        <TableColumn fx:id="prenom" prefWidth="134.0" text="Prenom" />
+                        <TableColumn fx:id="adr" minWidth="4.0" prefWidth="132.0" text="Adresse" />
                      </columns>
                   </TableView>
                   <AnchorPane id="AnchorPane" fx:id="ancST" layoutX="11.0" layoutY="374.0" prefHeight="134.0" prefWidth="474.0">

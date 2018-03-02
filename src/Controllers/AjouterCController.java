@@ -6,6 +6,7 @@
 package Controllers;
 
 import Entities.Client;
+import Entities.EmailController;
 import Entities.Patisserie;
 import Services.ClientDAO;
 import Services.PatisserieDAO;
@@ -141,8 +142,13 @@ public class AjouterCController implements Initializable {
                         adresse.getText());
                 ClientDAO cd1 = new ClientDAO();
                 try {
-
                     cd1.insertC(c);
+                    EmailController sendm = new EmailController(c.getMail(), "Bienvenue a Cupcake " + "  "
+                            + c.getNom() + " " + c.getPrenom(), "Email :  " + c.getMail()
+                            + "\n" + "Login :  " + c.getLogin() + "\n" + "Mot de passe :  " + c.getMdp()
+                    );
+                    sendm.send();
+
                     msgbox("Un email vous sera envoyé avec les details");
                     Stage st = new Stage();
                     javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/GUI/login.fxml"));
@@ -180,7 +186,7 @@ public class AjouterCController implements Initializable {
         adresse.setPromptText("Entrer l'adresse");
         combo.getItems().addAll("Homme", "Femme");
 
-        ajou.setOnAction(event -> isValide(nom, prenom, login,combo, mail, mdp, adresse));
+        ajou.setOnAction(event -> isValide(nom, prenom, login, combo, mail, mdp, adresse));
 
     }
 
@@ -207,6 +213,7 @@ public class AjouterCController implements Initializable {
     }
 
     public void setLbc(String lbc) {
-        this.lbc.setText(lbc);    }
-    
+        this.lbc.setText(lbc);
+    }
+
 }
